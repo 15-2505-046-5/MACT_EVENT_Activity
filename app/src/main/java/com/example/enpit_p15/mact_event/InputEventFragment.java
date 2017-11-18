@@ -37,6 +37,7 @@ public class InputEventFragment extends Fragment {
     private Realm mRealm;
     private EditText mTitleEdit;
     private EditText mBodyEdit;
+    private EditText mDate;
     private ImageView mEventImage;
 
     public static InputEventFragment newInstance(long eventId) {
@@ -68,6 +69,7 @@ public class InputEventFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_input_event,container,false);
         mTitleEdit = (EditText) v.findViewById(R.id.title);
         mBodyEdit = (EditText)v.findViewById(R.id.bodyEditText);
+        mDate = (EditText)v.findViewById(R.id.date);
         mEventImage = (ImageView)v.findViewById(R.id.format_photo);
 
         mEventImage.setOnClickListener(new View.OnClickListener(){
@@ -116,6 +118,28 @@ public class InputEventFragment extends Fragment {
                 });
             }
         });
+
+        mDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+                mRealm.executeTransactionAsync(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
+                        event.date = s.toString();
+                    }
+                });
+            }
+        });
+
 
         return v;
     }

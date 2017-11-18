@@ -17,6 +17,7 @@ public class Toukou extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toukou);  //activity_toukouを呼び出す
+        setTitle("フォーマットを選択");
 
         /*過去の投稿に遷移するボタンの設定*/
         Button send_past = (Button)findViewById(R.id.send_past);

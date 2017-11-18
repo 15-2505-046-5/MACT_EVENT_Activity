@@ -3,8 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.enpit_p15.mact_event_tokogamen.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:id="@+id/menu_item_add_event_main"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="イベントを投稿"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_item_search_main"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="検索する"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_item_delete_all_main"
+        android:icon="@drawable/ic_delete"
+        android:title="投稿全消去"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_item_add2_even2_main"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="フォーマット選択後に遷移"
         app:showAsAction="always" />
 </menu>

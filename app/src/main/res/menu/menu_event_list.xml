@@ -6,19 +6,21 @@
         android:id="@+id/menu_item_add_event"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="イベントを投稿"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/menu_item_search"
         android:actionViewClass="android.widget.SearchView"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="検索する" />
+        android:title="検索する"
+        app:showAsAction="always" />
     <item
         android:id="@+id/menu_item_delete_all"
         android:icon="@drawable/ic_delete"
-        android:title="投稿全消去" />
+        android:title="投稿全消去"
+        app:showAsAction="always" />
     <item
         android:id="@+id/menu_item_add2_even2"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="フォーマット選択後に遷移"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>

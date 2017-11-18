@@ -70,7 +70,7 @@ public class Toukou_past extends AppCompatActivity {
         return  true;
     }
 
-
+    //
 
 }
 

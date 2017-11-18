@@ -29,6 +29,8 @@ public class Toukou_past extends AppCompatActivity {
           new MenuItem.OnMenuItemClickListener(){
             @Override
              public boolean onMenuItemClick(MenuItem menuItem){
+                Intent intent_Toukou = new Intent(Toukou_past.this, Toukou.class);  //Toukou_pastからToukouに移動
+                startActivity(intent_Toukou);
                 return true;
             }
         });
@@ -44,6 +46,25 @@ public class Toukou_past extends AppCompatActivity {
                     }
                 });
 
+        MenuItem deleteEvent = menu.findItem(R.id.menu_item_delete_all_sub);
+        deleteEvent.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem){
+
+                        return true;
+                    }
+                });
+
+        MenuItem return_button = menu.findItem(R.id.menu_item_finish);
+        return_button.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem){
+                        finish();
+                        return true;
+                    }
+                });
 
 
         return  true;

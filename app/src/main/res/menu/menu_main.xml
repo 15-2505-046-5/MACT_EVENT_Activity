@@ -14,13 +14,8 @@
         android:title="検索する"
         app:showAsAction="always" />
     <item
-        android:id="@+id/menu_item_delete_all_main"
-        android:icon="@drawable/ic_delete"
-        android:title="投稿全消去"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/menu_item_add2_even2_main"
-        android:icon="@android:drawable/ic_menu_edit"
-        android:title="フォーマット選択後に遷移"
+        android:id="@+id/menu_item_finish2"
+        android:icon="@drawable/ic_chevron_left"
+        android:title="戻る"
         app:showAsAction="always" />
 </menu>

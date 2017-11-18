@@ -8,14 +8,17 @@
         android:title="イベントを投稿"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_item_delete_all"
-        android:icon="@drawable/ic_delete"
-        android:title="投稿全消去"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/menu_item_search"
         android:actionViewClass="android.widget.SearchView"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="検索する"
+        android:title="検索する" />
+    <item
+        android:id="@+id/menu_item_delete_all"
+        android:icon="@drawable/ic_delete"
+        android:title="投稿全消去" />
+    <item
+        android:id="@+id/menu_item_add2_even2"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="フォーマット選択後に遷移"
         app:showAsAction="ifRoom" />
 </menu>

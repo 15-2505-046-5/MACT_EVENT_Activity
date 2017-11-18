@@ -139,7 +139,7 @@ public class InputEventFragment extends Fragment {
 
     private void pickImage(){
         Intent intent = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(
                 Intent.createChooser(

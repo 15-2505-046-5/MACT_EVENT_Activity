@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class Toukou extends AppCompatActivity {
 
+    private EventListFragment.OnFragmentInteractionListener mListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +23,37 @@ public class Toukou extends AppCompatActivity {
         send_past.setOnClickListener(new View.OnClickListener(){  //ボタンがクリックされた時の挙動を設定
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Toukou.this, Toukou_past.class);  //ToukouからToukou_pastに移動
+                Intent intent_Toukou_past = new Intent(Toukou.this, Toukou_past.class);  //ToukouからToukou_pastに移動
+                startActivity(intent_Toukou_past);
             }
         });
+
+        //フォーマット選択後の画面に遷移するボタンの設定
+        //Button button_ago = (Button)findViewById(R.id.button_ago);
+        //button_ago.setOnClickListener(new View.OnClickListener(){  //ボタンがクリックされた時の挙動を設定
+            //@Override
+            //public void onClick(View view){
+                //mListener.onAddEventSelected();
+                //Intent intent_input_event = new Intent(Toukou.this, InputEventFragment.class);  //ToukouからInputEventFragmentに移動
+                //startActivity(intent_input_event);
+            //}
+        //});
+
+        //@Override
+        //public boolean onOptionsItemSelected2(MenuItem item){
+
+            //switch (item.getItemId()){
+                //case R.id.menu_item_add_event:
+                    //if (mListener != null){
+                        //mListener.onAddEventSelected();
+                    //}
+                    //return true;
+
+            //}
+            //return  false;
+        //}
+
         /*ここまで*/
     }
+
 }

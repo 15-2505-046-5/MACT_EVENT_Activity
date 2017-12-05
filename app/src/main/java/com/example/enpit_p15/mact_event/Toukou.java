@@ -16,7 +16,7 @@ public class Toukou extends AppCompatActivity {
     private EventListFragment.OnFragmentInteractionListener mListener;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toukou);  //activity_toukouを呼び出す
         setTitle("フォーマットを選択");
@@ -28,6 +28,14 @@ public class Toukou extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent_Toukou_past = new Intent(Toukou.this, Toukou_past.class);  //ToukouからToukou_pastに移動
                 startActivity(intent_Toukou_past);
+            }
+        });
+
+        ((Button) findViewById(R.id.button_ago)).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                InputEventFragment fragment = new InputEventFragment();
+                
             }
         });
     }

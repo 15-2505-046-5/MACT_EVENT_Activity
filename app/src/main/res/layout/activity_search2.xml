@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="キーワードを入力"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,13 +24,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="24dp"
         android:text="検索"
         android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@+id/SearchText"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        app:layout_constraintHorizontal_bias="0.508" />
 
     <ImageButton
         android:id="@+id/DateButton"
@@ -53,7 +53,8 @@
         android:text="日付から検索"
         android:textSize="24sp"
         app:layout_constraintLeft_toRightOf="@+id/DateButton"
-        app:layout_constraintTop_toBottomOf="@+id/SearchButton" />
+        app:layout_constraintTop_toBottomOf="@+id/SearchButton"
+        android:layout_marginStart="8dp" />
 
     <ImageButton
         android:id="@+id/PrefButton"
@@ -63,27 +64,30 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:srcCompat="@android:drawable/ic_menu_mapmode"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/DateButton" />
+        app:layout_constraintTop_toBottomOf="@+id/DateButton"
+        android:layout_marginStart="16dp" />
 
     <ImageButton
         android:id="@+id/CategoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="42dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PrefButton"
-        app:srcCompat="@android:drawable/ic_dialog_dialer" />
+        app:srcCompat="@android:drawable/ic_dialog_dialer"
+        android:layout_marginStart="16dp" />
 
     <ImageButton
         android:id="@+id/CostButton"
         android:layout_width="57dp"
         android:layout_height="53dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="66dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CategoryButton"
-        app:srcCompat="@drawable/ic_attach_money_black_24dp" />
+        app:srcCompat="@drawable/ic_attach_money_black_24dp"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/textView9"
@@ -94,18 +98,20 @@
         app:layout_constraintLeft_toRightOf="@+id/PrefButton"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/DateText" />
+        app:layout_constraintTop_toBottomOf="@+id/DateText"
+        android:layout_marginStart="8dp" />
 
     <TextView
         android:id="@+id/CategoryText"
         android:layout_width="256dp"
         android:layout_height="46dp"
-        android:layout_marginTop="16dp"
         android:text="ジャンルから探す"
         android:textSize="24sp"
+        android:layout_marginTop="46dp"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         app:layout_constraintLeft_toRightOf="@+id/CategoryButton"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp" />
 
     <TextView
         android:id="@+id/CostText"
@@ -113,9 +119,47 @@
         android:layout_height="50dp"
         android:text="費用から探す"
         android:textSize="24sp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintTop_toBottomOf="@+id/CategoryText"
         app:layout_constraintLeft_toRightOf="@+id/CostButton"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp" />
+
+    <Spinner
+        android:id="@+id/prefSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_orange_light"
+        android:entries="@array/prefecture_list"
+        android:popupBackground="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/CategoryText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Spinner
+        android:id="@+id/cateSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_red_light"
+        android:dropDownWidth="wrap_content"
+        android:entries="@array/category_list"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/CostText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CategoryText" />
 
 </android.support.constraint.ConstraintLayout>

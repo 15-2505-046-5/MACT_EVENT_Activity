@@ -40,18 +40,20 @@ public class InputEventFragment extends Fragment {
     private EditText mDate;
     private ImageView mEventImage;
 
-    public static InputEventFragment newInstance(long eventId) {
+    public static InputEventFragment newInstance(long eventId) {  //フラグメントのインスタンスを作成する
+        /*引数として受け取った日記のIDをフラグメントに保存する*/
         InputEventFragment fragment = new InputEventFragment();
         Bundle args = new Bundle();
         args.putLong(EVENT_ID, eventId);
         fragment.setArguments(args);
         return fragment;
+        /*ここまで*/
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (getArguments() != null) {  //上で保存した日記のIDを変数に格納
             mEventId = getArguments().getLong(EVENT_ID);
         }
         mRealm = Realm.getDefaultInstance();
@@ -77,9 +79,9 @@ public class InputEventFragment extends Fragment {
             public void onClick(View view){
                 requestReadStorage(view);
             }
-        });
+        });  //タップした時の処理
 
-        mTitleEdit.addTextChangedListener(new TextWatcher() {
+        mTitleEdit.addTextChangedListener(new TextWatcher() {  //入力内容をデータベースに格納する
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -92,13 +94,13 @@ public class InputEventFragment extends Fragment {
                     @Override
                     public void execute(Realm realm){
                         Schedule event = realm.where(Schedule.class).equalTo("id",mEventId).findFirst();
-                        event.title = s.toString();
+                        event.title = s.toString();  //titleの中身をデータベースに格納
                     }
                 });
             }
         });
 
-        mBodyEdit.addTextChangedListener(new TextWatcher() {
+        mBodyEdit.addTextChangedListener(new TextWatcher() {  //入力内容をデータベースに格納する
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -113,13 +115,13 @@ public class InputEventFragment extends Fragment {
                     @Override
                     public void execute(Realm realm) {
                         Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
-                        event.bodyText = s.toString();
+                        event.bodyText = s.toString();  //bodyTextの中身を格納
                     }
                 });
             }
         });
 
-        mDate.addTextChangedListener(new TextWatcher() {
+        mDate.addTextChangedListener(new TextWatcher() {  //入力内容をデータベースに格納する
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -134,7 +136,7 @@ public class InputEventFragment extends Fragment {
                     @Override
                     public void execute(Realm realm) {
                         Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
-                        event.date = s.toString();
+                        event.date = s.toString();  //dateのデータベースに格納
                     }
                 });
             }
@@ -144,6 +146,7 @@ public class InputEventFragment extends Fragment {
         return v;
     }
 
+/*確認ウインドウの表示*/
     private void requestReadStorage(View view){
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -160,7 +163,9 @@ public class InputEventFragment extends Fragment {
             pickImage();
         }
     }
+/*ここまで*/
 
+/*端末内の画像を取得する処理*/
     private void pickImage(){
         Intent intent = new Intent(Intent.ACTION_PICK,
                                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -173,12 +178,14 @@ public class InputEventFragment extends Fragment {
                 ),
                 REQUEST_CODE);
     }
+/*ここまで*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode ,Intent date){
         super.onActivityResult(requestCode,resultCode,date);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
 
+            /*画像関連のやつ　p308、p313*/
             Uri uri = (date == null) ? null : date.getData();
             if (uri != null){
                 try{
@@ -203,6 +210,7 @@ public class InputEventFragment extends Fragment {
                     }
                 });
             }
+            /*ここまで*/
         }
 
     }
@@ -211,6 +219,7 @@ public class InputEventFragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults){
+        /*画像関連のやつ　p308、p314*/
         if(requestCode == PERMISSION_REQUEST_CODE){
             if(grantResults.length != 1 ||
                     grantResults[0] != PackageManager.PERMISSION_GRANTED){
@@ -220,6 +229,7 @@ public class InputEventFragment extends Fragment {
                 pickImage();
             }
         }
+        /*ここまで*/
 
     }
 

@@ -1,3 +1,5 @@
+/*閲覧機能の実装。ほかに記事の共有？と画像から主要職を取得して画像デザインに反映も実装？要らないと思われる。p329-p333
+  Realmデータベースからの検索など重要そうなことを結構やっているので要確認*/
 package com.example.enpit_p15.mact_event;
 
 import android.content.Intent;
@@ -36,10 +38,12 @@ public class ShowEventActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*記事の共有*/
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.putExtra(Intent.EXTRA_TEXT,mBodyText);
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
+                /*ここまで*/
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -54,21 +58,24 @@ public class ShowEventActivity extends AppCompatActivity {
         NestedScrollView scrollView =
                 (NestedScrollView)findViewById(R.id.scroll_view);
 
-        Schedule event = mRealm.where(Schedule.class).equalTo("id",eventId).findFirst();
+        Schedule event = mRealm.where(Schedule.class).equalTo("id",eventId).findFirst();  //IDをもとにRealmデータベースを検索してデータの取得
 
         CollapsingToolbarLayout layout =
                 (CollapsingToolbarLayout)findViewById(R.id.toolbar_layout);
         layout.setTitle(event.title);
 
-        mBodyText = event.bodyText;
+        mBodyText = event.bodyText;  //変数に取得した本文を格納
 
-        body.setText(event.bodyText);
+        body.setText(event.bodyText);  //本文を表示
 
+        /*画像のやつ*/
         byte[] bytes =  event.image;
         if(bytes != null && bytes.length > 0){
             mBitmap = MyUtils.getImageFromByte(bytes);
             imageView.setImageBitmap(mBitmap);
+        /*ここまで*/
 
+            /*日記の画像から代表色を取得して画面に反映*/
             Palette palette = Palette.from(mBitmap).generate();
 
             int titleColor = palette.getLightVibrantColor(Color.WHITE);
@@ -81,6 +88,7 @@ public class ShowEventActivity extends AppCompatActivity {
             scrollView.setBackgroundColor(bodyColor);
             body.setTextColor(titleColor);
             fab.setBackgroundTintList(ColorStateList.valueOf(iconColor));
+            /*ここまで*/
         }
     }
 

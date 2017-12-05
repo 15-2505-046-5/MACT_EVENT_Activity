@@ -1,19 +1,42 @@
 package com.example.enpit_p15.mact_event;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
-public class SearchActivity extends AppCompatActivity {
+import java.util.Locale;
+
+public class SearchActivity extends AppCompatActivity implements
+        DatePickerDialog.OnDateSetListener {
+
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search2);
         setTitle("検索");
+        textView = (TextView) findViewById(R.id.textView);
     }
+
+    @Override
+    public void onDateSet(DatePicker view,int year,int monthOfYear, int dayOfMonth){
+        String str = String.format(Locale.US, "%d/%d/%d",year,monthOfYear,dayOfMonth);
+        textView.setText(str);
+    }
+
+    public void showDatePickerDialog(View v){
+        DialogFragment newFragment  =new DatePick();
+        newFragment.show(getSupportFragmentManager(),"datePicker");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

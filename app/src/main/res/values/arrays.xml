@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name = "category_list">
-        <item></item>
+        <item>ジャンルから選ぶ</item>
         <item>季節のイベント</item>
         <item>祭り</item>
         <item>スポーツ</item>
@@ -14,7 +14,7 @@
         <item>その他</item>
     </string-array>
     <string-array name="prefecture_list">
-        <item></item>
+        <item>都道府県から選ぶ</item>
         <item>北海道</item>
         <item>青森県</item>
         <item>岩手県</item>
@@ -62,4 +62,14 @@
         <item>鹿児島県</item>
         <item>沖縄県</item>
     </string-array>
+    <string-array name = "cost_list">
+        <item>費用から選ぶ</item>
+        <item>無料</item>
+        <item>～500円未満</item>
+        <item>500円以上1000円未満</item>
+        <item>1000円以上2000円未満</item>
+        <item>2000円以上5000円未満</item>
+        <item>5000円以上10000円未満</item>
+        <item>10000円以上</item>
+        </string-array>
 </resources>

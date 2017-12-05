@@ -7,6 +7,7 @@
     <string name="rationale">端末内の画像を読み取ってイベント投稿するには許可をタップします。</string>
     <string name="permission_deny">端末内の画像を読み取るためのパーミッションが必要です。</string>
     <string name="title_activity_show_event">ShowEventActivity</string>
+    <string name="date_text">日付から検索</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

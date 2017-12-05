@@ -5,19 +5,29 @@ package com.example.enpit_p15.mact_event;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class Toukou extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import io.realm.Realm;
+
+public class Toukou extends AppCompatActivity implements EventListFragment.OnFragmentInteractionListener{
 
     private EventListFragment.OnFragmentInteractionListener mListener;
+    private Realm mRealm;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRealm = Realm.getDefaultInstance();
         setContentView(R.layout.activity_toukou);  //activity_toukouを呼び出す
         setTitle("フォーマットを選択");
 
@@ -55,7 +65,7 @@ public class Toukou extends AppCompatActivity {
                     }
                 });
 
-        MenuItem return_button = menu.findItem(R.id.menu_item_return_format);
+        final  MenuItem return_button = menu.findItem(R.id.menu_item_return_format);
         return_button.setOnMenuItemClickListener(
                 new MenuItem.OnMenuItemClickListener() {
                     @Override
@@ -65,8 +75,43 @@ public class Toukou extends AppCompatActivity {
                     }
                 });
 
+        final  MenuItem InputEvent_button = menu.findItem(R.id.menu_item_add_event_format);
+        InputEvent_button.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        mListener.onAddEventSelected();
+                        return true;
+                    }
+                });
+
 
         return true;
         ////
+    }
+
+
+
+    @Override
+    public void onAddEventSelected(){
+        //新規イベント追加処理をここに
+        mRealm.beginTransaction();
+        Number maxId = mRealm.where(Schedule.class).max("id");
+        long nextId = 0;
+        if(maxId != null){
+            nextId = maxId.longValue() + 1;
+        }
+        Schedule event = mRealm.createObject(Schedule.class, new Long(nextId));
+        event.date = new SimpleDateFormat("MMM d", Locale.US).format(new Date());
+        mRealm.commitTransaction();
+
+        InputEventFragment inputEventFragment =
+                InputEventFragment.newInstance(nextId);
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.content, inputEventFragment,
+                "InputEventFragment");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

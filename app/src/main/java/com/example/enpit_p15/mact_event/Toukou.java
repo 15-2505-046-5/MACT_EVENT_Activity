@@ -5,6 +5,7 @@ package com.example.enpit_p15.mact_event;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,8 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         setContentView(R.layout.activity_toukou);  //activity_toukouを呼び出す
         setTitle("フォーマットを選択");
 
+        ShowInputEvent();
+
         /*過去の投稿に遷移するボタンの設定*/
         Button send_past = (Button) findViewById(R.id.send_past);
         send_past.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
@@ -41,14 +44,28 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
             }
         });
 
-        ((Button) findViewById(R.id.button_ago)).setOnClickListener(new View.OnClickListener(){
+        //選択後に遷移するボタンの設定
+        Button send_ago = (Button) findViewById(R.id.button_ago);
+        send_past.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
             @Override
-            public void onClick(View v){
-                InputEventFragment fragment = new InputEventFragment();
-                
+            public void onClick(View view) {
+                mListener.onAddEventSelected();         //addEventSelectedの実行、フラグメントの呼び出し
             }
         });
+
+
     }
+
+    //フラグメントの断続表示を解消
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mRealm.close();
+        mListener = null;
+    }
+
+
+
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.menu_event_format, menu);
@@ -68,21 +85,11 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         final  MenuItem return_button = menu.findItem(R.id.menu_item_return_format);
         return_button.setOnMenuItemClickListener(
                 new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        finish();
-                        return true;
-                    }
-                });
-
-        final  MenuItem InputEvent_button = menu.findItem(R.id.menu_item_add_event_format);
-        InputEvent_button.setOnMenuItemClickListener(
-                new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        mListener.onAddEventSelected();
-                        return true;
-                    }
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            finish();
+                            return true;
+                        }
                 });
 
 
@@ -90,6 +97,17 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         ////
     }
 
+    //試しにShowを追加、メイン画面が投稿画面と重なる事態に
+    private void ShowInputEvent(){
+        FragmentManager manager = getSupportFragmentManager();
+        Fragment fragment = manager.findFragmentByTag("InputEventFragment");
+        if(fragment == null){
+            fragment = new EventListFragment();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.add(R.id.content, fragment, "InputEventFragment");
+            transaction.commit();
+        }
+    }
 
 
     @Override

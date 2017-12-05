@@ -33,37 +33,43 @@ public class EventListFragment extends Fragment {
         return fragment;
     }
 
+/*Realmの取得*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRealm = Realm.getDefaultInstance();
     }
+/*ここまで*/
 
+/*Realmを閉じる処理*/
     @Override
     public void onDestroy(){
         super.onDestroy();
         mRealm.close();
     }
+/*ここまで*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_event_list,container,false);
+
+        View v = inflater.inflate(R.layout.fragment_event_list,container,false); //xmlファイルを適応して画面の作成
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());  //リスト表示するために必要なクラスのインスタンスを生成
+        llm.setOrientation(LinearLayoutManager.VERTICAL);  //スクロールを縦に設定
 
-        recyclerView.setLayoutManager(llm);
+        recyclerView.setLayoutManager(llm);  //リスト表示とスクロールを紐づけする
 
-        RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();
-        EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);
+        RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得
+        EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+        //ここでデータが更新されるとアダプターも更新されるため、最新の状態が表示される
 
-        recyclerView.setAdapter(adapter);
-        return v;
+        recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        return v;  //作成した画面を返す
     }
 
-
+    /*フラグメントのライフサイクルメソッド*/
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -74,23 +80,29 @@ public class EventListFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+/*ここまで*/
 
+/*フラグメントのライフサイクルメソッド*/
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
+/*ここまで*/
 
-    public interface OnFragmentInteractionListener {
-        void onAddEventSelected();
+    public interface OnFragmentInteractionListener {  //onAttach内で使用しているインターフェイスの定義
+        void onAddEventSelected();  //日記の新規作成を行うメソッドの定義
     }
 
+/*フラグメントのライフサイクルメソッド*/
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true);  //オプションメニューの準備。これでonCreateOptionMenuが呼ばれる
     }
+/*ここまで*/
 
+    /*オプションメニューのやつ　p318、p319　　メニューの項目をインスタンス化して設定した*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
         super.onCreateOptionsMenu(menu,inflater);
@@ -106,12 +118,14 @@ public class EventListFragment extends Fragment {
         MyUtils.tintMenuIcon(getContext(),searchEvent,android.R.color.white);
         MyUtils.tintMenuIcon(getContext(),addEvent2,android.R.color.white);
     }
+/*ここまで*/
 
+/*オプションメニューのやつ　p318、p319　　メニューがタップされたときに呼び出される*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
 
-        switch (item.getItemId()){
-            case R.id.menu_item_add_event:
+        switch (item.getItemId()){  //メニュー項目のIDを取得してswitch文に使用
+            case R.id.menu_item_add_event:  //追加がタップされた時の処理-1
                 if (mListener != null){
                     Intent intent_toukou = new Intent(this.getActivity(), Toukou.class);
                     startActivity(intent_toukou);
@@ -129,14 +143,14 @@ public class EventListFragment extends Fragment {
                     }
                 });
                 return true;
-            case R.id.menu_item_search:
+            case R.id.menu_item_search:  //検索がタップされた時の処理
                 if(mListener != null){
                     Intent intent_search = new Intent(this.getActivity(),SearchActivity.class);
                     //Intent intent = new Intent(EventListFragment.this, Toukou.class);
                     startActivity(intent_search);
                 }
                 return  true;
-            case R.id.menu_item_add2_even2:
+            case R.id.menu_item_add2_even2:  //追加がタップされた時の処理-2
                 if(mListener != null){
                     mListener.onAddEventSelected();
                 }
@@ -144,6 +158,6 @@ public class EventListFragment extends Fragment {
         }
         return  false;
     }
-
+/*ここまで*/
 
 }

@@ -1,3 +1,4 @@
+/*画像に関する処理の設定を行っている。また、アイコンの色の変更も行っている？*/
 package com.example.enpit_p15.mact_event;
 
 import android.content.ContentResolver;
@@ -67,6 +68,7 @@ public class MyUtils {
         return bmp;
     }
 
+/*アイコンの色の変更　p320*/
     public static void tintMenuIcon(Context context, MenuItem item,
                                     @ColorRes int color){
         Drawable normalDrawable = item.getIcon();
@@ -75,4 +77,5 @@ public class MyUtils {
                 ContextCompat.getColor(context, color));
         item.setIcon(wrapDrawable);
     }
+/*ここまで*/
 }

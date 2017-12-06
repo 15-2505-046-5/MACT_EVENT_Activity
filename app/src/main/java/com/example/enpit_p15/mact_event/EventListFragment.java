@@ -110,13 +110,13 @@ public class EventListFragment extends Fragment {
         MenuItem addEvent = menu.findItem(R.id.menu_item_add_event);
         MenuItem deleteAll = menu.findItem(R.id.menu_item_delete_all);
         MenuItem searchEvent = menu.findItem(R.id.menu_item_search);
-        MenuItem addEvent2 = menu.findItem(R.id.menu_item_add2_even2);
+
 
 
         MyUtils.tintMenuIcon(getContext(),addEvent,android.R.color.white);
         MyUtils.tintMenuIcon(getContext(),deleteAll,android.R.color.white);
         MyUtils.tintMenuIcon(getContext(),searchEvent,android.R.color.white);
-        MyUtils.tintMenuIcon(getContext(),addEvent2,android.R.color.white);
+
     }
 /*ここまで*/
 
@@ -150,11 +150,7 @@ public class EventListFragment extends Fragment {
                     startActivity(intent_search);
                 }
                 return  true;
-            case R.id.menu_item_add2_even2:  //追加がタップされた時の処理-2
-                if(mListener != null){
-                    mListener.onAddEventSelected();
-                }
-                return true;
+
         }
         return  false;
     }

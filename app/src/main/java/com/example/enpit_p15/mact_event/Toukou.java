@@ -88,32 +88,43 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
-        getMenuInflater().inflate(R.menu.menu_event_format, menu);
+
+            getMenuInflater().inflate(R.menu.menu_input_event, menu);
+            getMenuInflater().inflate(R.menu.menu_event_format, menu);
 
 
-        final MenuItem search_button = menu.findItem(R.id.menu_item_search_format);
-        search_button.setOnMenuItemClickListener(
-                new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        Intent intent_SeachActivity = new Intent(Toukou.this, SearchActivity.class);  //ToukouからSearchActivityに移動
-                        startActivity(intent_SeachActivity);
-                        return true;
-                    }
-                });
+           final MenuItem search_button = menu.findItem(R.id.menu_item_search_format);
+           search_button.setOnMenuItemClickListener(
+                   new MenuItem.OnMenuItemClickListener() {
+                       @Override
+                       public boolean onMenuItemClick(MenuItem menuItem) {
+                           Intent intent_SeachActivity = new Intent(Toukou.this, SearchActivity.class);  //ToukouからSearchActivityに移動
+                           startActivity(intent_SeachActivity);
+                           return true;
+                       }
+                   });
 
-        final  MenuItem return_button = menu.findItem(R.id.menu_item_return_format);
-        return_button.setOnMenuItemClickListener(
-                new MenuItem.OnMenuItemClickListener() {
+           final  MenuItem return_button = menu.findItem(R.id.menu_item_return_format);
+           return_button.setOnMenuItemClickListener(
+                   new MenuItem.OnMenuItemClickListener() {
+                       @Override
+                       public boolean onMenuItemClick(MenuItem menuItem) {
+                           finish();
+                           return true;
+                       }
+                   });
+
+            final  MenuItem save_button = menu.findItem(R.id.menu_item_save_event);
+            save_button.setOnMenuItemClickListener(
+                    new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
                             finish();
                             return true;
                         }
-                });
+                    });
 
-
-        return true;
+           return true;
         ////
     }
 

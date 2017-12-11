@@ -31,7 +31,6 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
         protected TextView bodyText;
         protected TextView date;
         protected ImageView photo;
-        protected TextView eventId; //ID表示用　試験段階
 
         public EventViewHolder(View itemView){
             super(itemView);
@@ -39,7 +38,6 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
             bodyText = (TextView)itemView.findViewById(R.id.body);
             date = (TextView)itemView.findViewById(R.id.date);
             photo = (ImageView)itemView.findViewById(R.id.format_photo);
-            eventId = (TextView)itemView.findViewById(R.id.EventId);//ID表示用　試験段階
         }
     }
 /*ここまで*/

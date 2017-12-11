@@ -77,6 +77,7 @@ public class InputEventFragment extends Fragment {
         mDate = (EditText)v.findViewById(R.id.date);
         mEventImage = (ImageView)v.findViewById(R.id.format_photo);
 
+
         mEventImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

@@ -78,7 +78,7 @@ public class InputEventFragment extends Fragment{
         mDate = (EditText)v.findViewById(R.id.date);
         mEventImage = (ImageView)v.findViewById(R.id.format_photo);
 
-        /*フラグメントにボタンを追加する処理。三浦が変更中でした。気にしないで*/
+        /*フラグメントにボタンを追加する処理。三浦が変更中でした。気にしないで。　*/
         // 第３引数のbooleanは"container"にreturnするViewを追加するかどうか
         //trueにすると最終的なlayoutに再度、同じView groupが表示されてしまうのでfalseでOKらしい
         View v_b = inflater.inflate(R.layout.fragment_input_event, container, false);

@@ -19,7 +19,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
+
+import android.widget.Button;
+
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,8 +34,9 @@ import io.realm.Realm;
 import static android.app.Activity.RESULT_OK;
 
 
-public class InputEventFragment extends Fragment implements
-        DatePickerDialog.OnDateSetListener {
+
+public class InputEventFragment extends Fragment{
+
     private static final String EVENT_ID = "EVENT_ID";
     private static final int REQUEST_CODE = 1;
     private static final int PERMISSION_REQUEST_CODE = 2;
@@ -85,8 +88,20 @@ public class InputEventFragment extends Fragment implements
         mBodyEdit = (EditText)v.findViewById(R.id.bodyEditText);
         mDate = (EditText)v.findViewById(R.id.date);
         mEventImage = (ImageView)v.findViewById(R.id.format_photo);
-        textView = (TextView)v.findViewById(R.id.DateText);
-        mEventImage.setOnClickListener(new View.OnClickListener(){
+
+
+        /*フラグメントにボタンを追加する処理。三浦が変更中でした。気にしないで。　*/
+        // 第３引数のbooleanは"container"にreturnするViewを追加するかどうか
+        //trueにすると最終的なlayoutに再度、同じView groupが表示されてしまうのでfalseでOKらしい
+        View v_b = inflater.inflate(R.layout.fragment_input_event, container, false);
+
+        // ボタンを取得して、ClickListenerをセット
+        Button b_h = (Button)v.findViewById(R.id.huzuke);
+        //b_h.setOnClickListener(this);
+        /*ここまで*/
+
+            mEventImage.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View view){
                 requestReadStorage(view);

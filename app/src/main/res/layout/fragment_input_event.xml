@@ -7,6 +7,15 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <Button
+        android:id="@+id/huzuke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="457dp" />
+
     <android.support.v7.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -85,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="イベント詳細" />
+
     </android.support.design.widget.TextInputLayout>
 
 </android.support.constraint.ConstraintLayout>

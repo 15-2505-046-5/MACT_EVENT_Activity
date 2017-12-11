@@ -17,6 +17,9 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -269,6 +272,31 @@ public class InputEventFragment extends Fragment{
         }
         /*ここまで*/
 
+    }
+
+    /*オプションメニューのやつ　p318、p319　　メニューの項目をインスタンス化して設定した*/
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu,inflater);
+        inflater.inflate(R.menu.menu_input_event,menu);
+        MenuItem saveEvent = menu.findItem(R.id.menu_item_save_event);
+
+        MyUtils.tintMenuIcon(getContext(),saveEvent,android.R.color.white);
+    }
+/*ここまで*/
+
+    /*オプションメニューのやつ　p318、p319　　メニューがタップされたときに呼び出される*/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()){  //メニュー項目のIDを取得してswitch文に使用
+            case R.id.menu_item_save_event:  //保存がタップされた時の処理
+                //getActivity().getFragmentManager().beginTransaction().remove().commit();
+                getFragmentManager().popBackStack();
+             default:
+        }
+
+        return false;
     }
 
 }

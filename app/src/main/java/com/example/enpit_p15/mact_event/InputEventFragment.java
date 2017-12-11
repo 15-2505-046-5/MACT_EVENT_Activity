@@ -1,6 +1,7 @@
 package com.example.enpit_p15.mact_event;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,28 +11,32 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.Button;
+
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import io.realm.Realm;
 
 import static android.app.Activity.RESULT_OK;
 
 
+
 public class InputEventFragment extends Fragment{
+
     private static final String EVENT_ID = "EVENT_ID";
     private static final int REQUEST_CODE = 1;
     private static final int PERMISSION_REQUEST_CODE = 2;
@@ -43,6 +48,8 @@ public class InputEventFragment extends Fragment{
     private EditText mBodyEdit;
     private EditText mDate;
     private ImageView mEventImage;
+
+    private TextView textView;
 
     public static InputEventFragment newInstance(long eventId) {  //フラグメントのインスタンスを作成する
         /*引数として受け取った日記のIDをフラグメントに保存する*/
@@ -57,11 +64,15 @@ public class InputEventFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {  //上で保存した日記のIDを変数に格納
             mEventId = getArguments().getLong(EVENT_ID);
         }
         mRealm = Realm.getDefaultInstance();
     }
+
+
+
 
     @Override
     public void onDestroy(){
@@ -78,6 +89,7 @@ public class InputEventFragment extends Fragment{
         mDate = (EditText)v.findViewById(R.id.date);
         mEventImage = (ImageView)v.findViewById(R.id.format_photo);
 
+
         /*フラグメントにボタンを追加する処理。三浦が変更中でした。気にしないで。　*/
         // 第３引数のbooleanは"container"にreturnするViewを追加するかどうか
         //trueにすると最終的なlayoutに再度、同じView groupが表示されてしまうのでfalseでOKらしい
@@ -89,6 +101,7 @@ public class InputEventFragment extends Fragment{
         /*ここまで*/
 
             mEventImage.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View view){
                 requestReadStorage(view);
@@ -158,6 +171,17 @@ public class InputEventFragment extends Fragment{
 
 
         return v;
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
+        String str = String.format(Locale.US, "%d/%d/%d",year,monthOfYear+1,dayOfMonth);
+        textView.setText(str);
+    }
+
+    public void showDatePickerDialog(View v){
+        DialogFragment newFragment  =new DatePick();
+        newFragment.show(getFragmentManager(),"datePicker");
     }
 
 /*確認ウインドウの表示*/
@@ -245,31 +269,6 @@ public class InputEventFragment extends Fragment{
         }
         /*ここまで*/
 
-    }
-
-    /*オプションメニューのやつ　p318、p319　　メニューの項目をインスタンス化して設定した*/
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        super.onCreateOptionsMenu(menu,inflater);
-        inflater.inflate(R.menu.menu_input_event,menu);
-        MenuItem saveEvent = menu.findItem(R.id.menu_item_save_event);
-
-        MyUtils.tintMenuIcon(getContext(),saveEvent,android.R.color.white);
-    }
-/*ここまで*/
-
-    /*オプションメニューのやつ　p318、p319　　メニューがタップされたときに呼び出される*/
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-
-        switch (item.getItemId()){  //メニュー項目のIDを取得してswitch文に使用
-            case R.id.menu_item_save_event:  //保存がタップされた時の処理
-                //getActivity().getFragmentManager().beginTransaction().remove().commit();
-                getFragmentManager().popBackStack();
-             default:
-        }
-
-        return false;
     }
 
 }

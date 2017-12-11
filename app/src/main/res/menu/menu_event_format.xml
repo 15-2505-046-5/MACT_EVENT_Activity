@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/menu_item_add_event_format"
+        android:enabled="false"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="イベント投稿画面"
+        app:showAsAction="always" />
     <item
         android:id="@+id/menu_item_search_format"
         android:icon="@android:drawable/ic_menu_search"

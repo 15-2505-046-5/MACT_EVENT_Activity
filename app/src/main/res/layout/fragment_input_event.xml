@@ -7,15 +7,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Button
-        android:id="@+id/huzuke"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Button"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="457dp" />
-
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
@@ -89,16 +80,6 @@
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
-
-        <EditText
-            android:id="@+id/bodyEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="イベント詳細" />
-
-    </android.support.design.widget.TextInputLayout>
-
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,6 @@
     <item name="masked" type="id"/>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#40ff40</color>
     <color name="background_material_light">#ffe0b2</color>
 </resources>

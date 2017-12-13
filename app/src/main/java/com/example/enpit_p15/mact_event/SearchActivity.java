@@ -32,7 +32,7 @@ public class SearchActivity extends AppCompatActivity implements
     public void onClick_Button(View view){
         Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
         TextView textView = (TextView)findViewById(R.id.result);
-        String str = spinner.getSelectedItem().toString();
+        String str = spinner.getSelectedItem().toString(); //スピナーの選択を反映させるための処理
         textView.setText(str);
         Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);
         TextView textView2 = (TextView)findViewById(R.id.result2);

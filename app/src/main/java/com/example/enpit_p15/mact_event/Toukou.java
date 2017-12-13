@@ -11,8 +11,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,34 +35,51 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
 
 
         //選択後に遷移するボタンの設定
-        Button send_ago = (Button) findViewById(R.id.button_ago);
-        send_ago.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
-            @Override
-            public void onClick(View view) {  //send_pastだった部分をsend_agoに変更
+        //Button send_ago = (Button) findViewById(R.id.button_ago);
+        //send_ago.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
+        //    @Override
+        //    public void onClick(View view) {  //send_pastだった部分をsend_agoに変更
                 //mListener.onAddEventSelected();         //addEventSelectedの実行、フラグメントの呼び出し
                 //onAddEventSelectedの中身をボタンを押したときの処理に持ってきた。この際、toukou.xmlのConstrantLayoutのIDをcontentに変更。
                 //現在toukou.xml内のcontentにInputEventFragmentが表示されている状態だと考えられる？
                 //contentの範囲を変更すればいい感じになるのではないかと思われる。
-                mRealm.beginTransaction();
-                Number maxId = mRealm.where(Schedule.class).max("id");
-                long nextId = 0;
-                if(maxId != null){
-                    nextId = maxId.longValue() + 1;
-                }
-                Schedule event = mRealm.createObject(Schedule.class, new Long(nextId));
-                event.date = new SimpleDateFormat("MMM d", Locale.US).format(new Date());
-                mRealm.commitTransaction();
-                InputEventFragment inputEventFragment =
-                        InputEventFragment.newInstance(nextId);  //インスタンスを作成してフラグメントの表示処理を開始
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.content,inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
-                transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
-                transaction.commit();
+        //        mRealm.beginTransaction();
+        //        Number maxId = mRealm.where(Schedule.class).max("id");
+        //        long nextId = 0;
+        //        if(maxId != null){
+        //            nextId = maxId.longValue() + 1;
+        //        }
+        //        Schedule event = mRealm.createObject(Schedule.class, new Long(nextId));
+        //        event.date = new SimpleDateFormat("MMM d", Locale.US).format(new Date());
+        //        mRealm.commitTransaction();
+        //        InputEventFragment inputEventFragment =
+        //                InputEventFragment.newInstance(nextId);  //インスタンスを作成してフラグメントの表示処理を開始
+        //        FragmentManager manager = getSupportFragmentManager();
+        //        FragmentTransaction transaction = manager.beginTransaction();
+        //        transaction.replace(R.id.content,inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
+        //        transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
+        //        transaction.commit();
                 /*ここまで*/
-            }
-        });
+        //    }
+        //});
 
+        //これより上の者は不要であるが、念のために残す。解説は上のものを参照
+        mRealm.beginTransaction();
+        Number maxId = mRealm.where(Schedule.class).max("id");
+        long nextId = 0;
+        if(maxId != null){
+            nextId = maxId.longValue() + 1;
+        }
+        Schedule event = mRealm.createObject(Schedule.class, new Long(nextId));
+        event.date = new SimpleDateFormat("MMM d", Locale.US).format(new Date());
+        mRealm.commitTransaction();
+        InputEventFragment inputEventFragment =
+                InputEventFragment.newInstance(nextId);  //インスタンスを作成してフラグメントの表示処理を開始
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.content,inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
+        transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
+        transaction.commit();
 
     }
 
@@ -111,7 +126,8 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
                     new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
-                            finish();
+                            Intent intent_MainActivity = new Intent(Toukou.this, MainActivity.class);  //ToukouからSearchActivityに移動
+                            startActivity(intent_MainActivity);
                             return true;
                         }
                     });

@@ -37,7 +37,7 @@ public class SearchActivity extends AppCompatActivity implements
         textViewC = (TextView)findViewById(R.id.result);
         String str = spinner.getSelectedItem().toString();
         textViewC.setText(str);
-        Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);
+        Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);//スピナーの処理を反映させるための処理
         textViewP = (TextView)findViewById(R.id.result2);
         String str2 = spinner2.getSelectedItem().toString();
         textViewP.setText(str2);

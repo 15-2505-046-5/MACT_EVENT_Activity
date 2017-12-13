@@ -3,6 +3,7 @@ package com.example.enpit_p15.mact_event;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,9 @@ public class ResultListFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private Realm mRealm;
+    private String CateText;
+    private String CostText;
+    private String PrefectureText;
 
     public ResultListFragment() {
         // Required empty public constructor
@@ -64,6 +68,19 @@ public class ResultListFragment extends Fragment {
         super.onDestroy();
         mRealm.close();
     }
+
+    /*フラグメントのライフサイクルメソッド*/
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);  //オプションメニューの準備。これでonCreateOptionMenuが呼ばれる
+        //MainActivity から　値受け取り
+        PrefectureText = getArguments().getString("PREF");
+        CateText = getArguments().getString("CATEGORY");
+        CostText = getArguments().getString("COST");
+
+    }
+/*ここまで*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

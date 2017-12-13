@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -24,6 +25,26 @@ public class SearchActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_search2);
         setTitle("検索");
         textView = (TextView) findViewById(R.id.DateText);
+
+
+    }
+
+    public void onClick_Button(View view){
+        Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
+        TextView textView = (TextView)findViewById(R.id.result);
+        String str = spinner.getSelectedItem().toString();
+        textView.setText(str);
+        Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);
+        TextView textView2 = (TextView)findViewById(R.id.result2);
+        String str2 = spinner2.getSelectedItem().toString();
+        textView2.setText(str2);
+        Spinner spinner3 = (Spinner)findViewById(R.id.spinner);
+        TextView textView3 = (TextView)findViewById(R.id.result3);
+        String str3 = spinner3.getSelectedItem().toString();
+        textView3.setText(str3);
+
+
+
     }
 
     @Override

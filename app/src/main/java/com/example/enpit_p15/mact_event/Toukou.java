@@ -39,7 +39,7 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         send_past.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
             @Override
             public void onClick(View view) {
-                Intent intent_Toukou_past = new Intent(Toukou.this, Toukou_past.class);  //ToukouからToukou_pastに移動
+                Intent intent_Toukou_past = new Intent(Toukou.this, RadioButtons.class);  //ToukouからToukou_pastに移動
                 startActivity(intent_Toukou_past);
             }
         });

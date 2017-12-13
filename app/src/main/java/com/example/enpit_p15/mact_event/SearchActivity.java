@@ -18,6 +18,9 @@ public class SearchActivity extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener {
 
     private TextView textView;
+    public TextView textViewM; //費用
+    public TextView textViewP; //都道府県
+    public TextView textViewC; //ジャンル
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +34,17 @@ public class SearchActivity extends AppCompatActivity implements
 
     public void onClick_Button(View view){
         Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
-        TextView textView = (TextView)findViewById(R.id.result);
-        String str = spinner.getSelectedItem().toString(); //スピナーの選択を反映させるための処理
-        textView.setText(str);
-        Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);
-        TextView textView2 = (TextView)findViewById(R.id.result2);
+        textViewC = (TextView)findViewById(R.id.result);
+        String str = spinner.getSelectedItem().toString();
+        textViewC.setText(str);
+        Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);//スピナーの処理を反映させるための処理
+        textViewP = (TextView)findViewById(R.id.result2);
         String str2 = spinner2.getSelectedItem().toString();
-        textView2.setText(str2);
+        textViewP.setText(str2);
         Spinner spinner3 = (Spinner)findViewById(R.id.spinner);
-        TextView textView3 = (TextView)findViewById(R.id.result3);
+        textViewM = (TextView)findViewById(R.id.result3);
         String str3 = spinner3.getSelectedItem().toString();
-        textView3.setText(str3);
+        textViewM.setText(str3);
 
 
 
@@ -56,6 +59,16 @@ public class SearchActivity extends AppCompatActivity implements
     public void showDatePickerDialog(View v){
         DialogFragment newFragment  =new DatePick();
         newFragment.show(getSupportFragmentManager(),"datePicker");
+    }
+
+    public void onClick_search(View view){
+        //Main Activityへの移動
+        Intent intent = new Intent(getApplication(),ResultActivity.class);
+        intent.putExtra("PREF", (CharSequence) textViewP);
+        intent.putExtra("CATE", (CharSequence) textViewC);
+        intent.putExtra("COST", (CharSequence) textViewM);
+        startActivity(intent);
+
     }
 
 

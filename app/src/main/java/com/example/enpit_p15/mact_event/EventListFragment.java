@@ -24,6 +24,7 @@ public class EventListFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private Realm mRealm;
 
+
     public EventListFragment() {
         // Required empty public constructor
     }
@@ -60,8 +61,8 @@ public class EventListFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);  //スクロールを縦に設定
 
         recyclerView.setLayoutManager(llm);  //リスト表示とスクロールを紐づけする
-
-        RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得
+        //検索条件　.equalTo("id:schedule","**Text")
+        RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得 検索条件の設定
         EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
         //ここでデータが更新されるとアダプターも更新されるため、最新の状態が表示される
 
@@ -99,6 +100,7 @@ public class EventListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);  //オプションメニューの準備。これでonCreateOptionMenuが呼ばれる
+
     }
 /*ここまで*/
 

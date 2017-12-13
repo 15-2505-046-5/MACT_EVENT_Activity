@@ -61,6 +61,13 @@ public class MainActivity extends AppCompatActivity
         FragmentManager manager = getSupportFragmentManager();
         Fragment fragment = manager.findFragmentByTag("EventListFragment");
         if(fragment == null){
+            //Fragmentへ変数の受け渡し
+           /* Bundle args = new Bundle();
+            args.putString("CATEGORY","かてぎおり");
+            args.putString("PREF","とどーふけん");
+            args.putString("COST","費用");
+            */
+            //
             fragment = new EventListFragment();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.add(R.id.content, fragment, "EventListFragment");

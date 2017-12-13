@@ -1,7 +1,12 @@
 package com.example.enpit_p15.mact_event;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -11,6 +16,7 @@ public class RadioButtons extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_radio_buttons);
+        setTitle("フォーマットを選択");
 
 
 
@@ -63,5 +69,57 @@ public class RadioButtons extends AppCompatActivity {
         //    }
         //});
         //}
+
+
+                        /*投稿詳細画面に遷移するボタンの設定*/
+        Button button_formatSaved = (Button) findViewById(R.id.button_format_saved);
+        button_formatSaved.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
+            @Override
+            public void onClick(View view) {
+                Intent intent_formatSelected = new Intent(RadioButtons.this, Toukou.class);  //RadioButtonsからToukouに移動
+                startActivity(intent_formatSelected);
+            }
+        });
+
+                /*過去の投稿に遷移するボタンの設定*/
+        Button send_past = (Button) findViewById(R.id.button_past);
+        send_past.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
+            @Override
+            public void onClick(View view) {
+                Intent intent_Toukou_past = new Intent(RadioButtons.this, Toukou_past.class);  //RadioButtonsからToukou_pastに移動
+                startActivity(intent_Toukou_past);
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_format_select,menu);
+
+        MenuItem addEvent = menu.findItem(R.id.menu_item_search_formatselected);
+        addEvent.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem){
+                        Intent intent_Toukou = new Intent(RadioButtons.this, SearchActivity.class);  //RadioButtonstからSearchに移動
+                        startActivity(intent_Toukou);
+                        return true;
+                    }
+                });
+
+
+
+        MenuItem return_button = menu.findItem(R.id.menu_item_return_formatselected);
+        return_button.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem){
+                        finish();
+                        return true;
+                    }
+                });
+
+
+        return  true;
     }
 }

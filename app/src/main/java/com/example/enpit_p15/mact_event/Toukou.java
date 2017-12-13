@@ -30,19 +30,11 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         super.onCreate(savedInstanceState);
         mRealm = Realm.getDefaultInstance();
         setContentView(R.layout.activity_toukou);  //activity_toukouを呼び出す
-        setTitle("フォーマットを選択");
+        setTitle("詳細入力");
 
        // ShowInputEvent(); 一時的に逃がす
 
-        /*過去の投稿に遷移するボタンの設定*/
-        Button send_past = (Button) findViewById(R.id.send_past);
-        send_past.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
-            @Override
-            public void onClick(View view) {
-                Intent intent_Toukou_past = new Intent(Toukou.this, RadioButtons.class);  //ToukouからToukou_pastに移動
-                startActivity(intent_Toukou_past);
-            }
-        });
+
 
         //選択後に遷移するボタンの設定
         Button send_ago = (Button) findViewById(R.id.button_ago);

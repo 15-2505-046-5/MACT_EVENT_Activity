@@ -127,7 +127,7 @@ public class EventListFragment extends Fragment {
         switch (item.getItemId()){  //メニュー項目のIDを取得してswitch文に使用
             case R.id.menu_item_add_event:  //追加がタップされた時の処理-1
                 if (mListener != null){
-                    Intent intent_toukou = new Intent(this.getActivity(), Toukou.class);
+                    Intent intent_toukou = new Intent(this.getActivity(), RadioButtons.class);
                     startActivity(intent_toukou);
                    // mListener.onAddEventSelected();
                 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_item_search_formatselected"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="検索"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_item_return_formatselected"
+        android:icon="@drawable/ic_chevron_left"
+        android:title="戻る"
+        app:showAsAction="always" />
+</menu>

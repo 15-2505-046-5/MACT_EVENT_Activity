@@ -10,6 +10,9 @@ import io.realm.RealmConfiguration;
  */
 
 public class EventApplication extends Application {
+
+    //private String testString = "default";
+
     @Override
     public void onCreate(){
         super.onCreate();
@@ -18,5 +21,13 @@ public class EventApplication extends Application {
                 = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(realmConfig);
     }
+
+    //public String getTestString() {
+      //  return testString;
+   // }
+
+    //public void setTestString(String str) {
+      //  testString = str;
+    //}
 }
 

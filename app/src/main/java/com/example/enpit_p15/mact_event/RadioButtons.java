@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 public class RadioButtons extends AppCompatActivity {
 
+    private String formatdata;
+    private EventApplication formatdata_grobal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,18 +45,29 @@ public class RadioButtons extends AppCompatActivity {
         ((RadioGroup) findViewById(R.id.radioGroup))
                 .setOnCheckedChangeListener(
                         new RadioGroup.OnCheckedChangeListener(){
+
+
                             @Override
                             public void onCheckedChanged(RadioGroup group,int checkedId){
                                 TextView tv = (TextView)findViewById(R.id.textView_test);
+                                TextView tv2 = (TextView)findViewById(R.id.textView_test3);
                                 switch (checkedId){
                                     case R.id.radioButton:
                                         tv.setText("フォーマット１");
+                                        formatdata  = "format_a";
+                                        //formatdata_grobal = (EventApplication) this.getApplication();
+                                        tv2.setText(formatdata);
                                         break;
                                     case R.id.radioButton2:
                                         tv.setText("フォーマット２");
+                                        formatdata  = "format_b";
+                                        tv2.setText(formatdata);
+
                                         break;
                                     case R.id.radioButton3:
                                         tv.setText("フォーマット３");
+                                        formatdata = "format_c";
+                                        tv2.setText(formatdata);
                                         break;
                                 }
                             }
@@ -77,6 +91,7 @@ public class RadioButtons extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent_formatSelected = new Intent(RadioButtons.this, Toukou.class);  //RadioButtonsからToukouに移動
+                intent_formatSelected.putExtra("FormatData", 0);
                 startActivity(intent_formatSelected);
             }
         });

@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = manager.findFragmentByTag("EventListFragment");
         if(fragment == null){
             //Fragmentへ変数の受け渡し
-           /* Bundle args = new Bundle();
+            Bundle args = new Bundle();
             args.putString("CATEGORY","かてぎおり");
             args.putString("PREF","とどーふけん");
             args.putString("COST","費用");
-            */
+
             //
             fragment = new EventListFragment();
             FragmentTransaction transaction = manager.beginTransaction();
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 /*ここまで*/
+
 
 /*日記追加の処理*/
     @Override

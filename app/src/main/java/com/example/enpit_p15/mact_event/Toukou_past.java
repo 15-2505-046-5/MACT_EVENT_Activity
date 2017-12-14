@@ -23,7 +23,7 @@ public class Toukou_past extends AppCompatActivity {
         int formatID = intent.getIntExtra("FormatData", 0);
 
         TextView textView = (TextView) findViewById(R.id.textView7);
-        textView.setText(formatID);
+        textView.setText(String.valueOf(formatID));
         //EventApplication myID = (EventApplication) this.getApplication();
        // String str = myID.getTestString();
         //TextView textView2 = (TextView) findViewById(R.id.textView6);

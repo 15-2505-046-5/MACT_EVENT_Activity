@@ -91,7 +91,7 @@ public class RadioButtons extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent_formatSelected = new Intent(RadioButtons.this, Toukou.class);  //RadioButtonsからToukouに移動
-                intent_formatSelected.putExtra("FormatData", formatdata);
+                intent_formatSelected.putExtra("FormatData", formatdata);       //activity間のデータの受け渡し部分
                 startActivity(intent_formatSelected);
             }
         });

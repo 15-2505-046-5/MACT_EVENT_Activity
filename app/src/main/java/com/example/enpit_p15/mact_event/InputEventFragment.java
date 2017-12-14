@@ -27,8 +27,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -36,7 +34,7 @@ import io.realm.Realm;
 
 import static android.app.Activity.RESULT_OK;
 
-
+//画像の表示、教P164,P91,305
 public class InputEventFragment extends Fragment {
     private static final String EVENT_ID = "EVENT_ID";
     private static final int REQUEST_CODE = 1;

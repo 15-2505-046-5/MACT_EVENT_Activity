@@ -38,6 +38,7 @@ public class ResultListFragment extends Fragment {
     private String CateText;
     private String CostText;
     private String PrefectureText;
+    private String KeyWord;
 
     public ResultListFragment() {
         // Required empty public constructor
@@ -78,6 +79,7 @@ public class ResultListFragment extends Fragment {
         PrefectureText = getArguments().getString("PREF");
         CateText = getArguments().getString("CATEGORY");
         CostText = getArguments().getString("COST");
+        KeyWord = getArguments().getString("KEY");
 
     }
 /*ここまで*/

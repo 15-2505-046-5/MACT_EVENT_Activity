@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class Toukou_past extends AppCompatActivity {
-
 
 
     @Override
@@ -18,6 +18,16 @@ public class Toukou_past extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toukou_past);  //activity_toukou_pastを呼び出す
         setTitle("投稿履歴");
+
+        Intent intent = getIntent();
+        int formatID = intent.getIntExtra("FormatData", 0);
+
+        TextView textView = (TextView) findViewById(R.id.textView7);
+        textView.setText(formatID);
+        //EventApplication myID = (EventApplication) this.getApplication();
+       // String str = myID.getTestString();
+        //TextView textView2 = (TextView) findViewById(R.id.textView6);
+      //  textView2.setText(str);
     }
 
     @Override

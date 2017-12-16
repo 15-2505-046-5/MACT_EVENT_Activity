@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -33,38 +32,41 @@ public class SearchActivity extends AppCompatActivity implements
         textView = (TextView) findViewById(R.id.DateText);
         textS = (EditText) findViewById(R.id.SearchText);
 
-        Button button = (Button)findViewById(R.id.SearchButton);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //変数の受け渡し
-                Intent intent = new Intent(SearchActivity.this,MainActivity.class);
-                //intent.putExtra("PREF", (CharSequence) textViewP);
-                //intent.putExtra("CATE", (CharSequence) textViewC);
-                //intent.putExtra("COST", (CharSequence) textViewM);
-                intent.putExtra("KEY",textS.getText().toString());
-                startActivity(intent);
-            }
+        Button button = (Button) findViewById(R.id.SearchButton);
+        button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //変数の受け渡し
+                    Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                    //intent.putExtra("PREF", (CharSequence) textViewP);
+                    //intent.putExtra("CATE", (CharSequence) textViewC);
+                    //intent.putExtra("COST", (CharSequence) textViewM);
+                    intent.putExtra("KEY", textS.getText().toString());
+                    startActivity(intent);
+                }
 
 
-        });
+            });
+
 
 
     }
 
     public void onClick_Button(View view){
-        Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
+        //Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
+        EditText txt =(EditText)findViewById(R.id.SearchText);
         textViewC = (TextView)findViewById(R.id.result);
-        String str = spinner.getSelectedItem().toString();
+        //String str = spinner.getSelectedItem().toString();
+        String str = txt.toString();
         textViewC.setText(str);
-        Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);//スピナーの処理を反映させるための処理
-        textViewP = (TextView)findViewById(R.id.result2);
-        String str2 = spinner2.getSelectedItem().toString();
-        textViewP.setText(str2);
-        Spinner spinner3 = (Spinner)findViewById(R.id.spinner);
-        textViewM = (TextView)findViewById(R.id.result3);
-        String str3 = spinner3.getSelectedItem().toString();
-        textViewM.setText(str3);
+        //Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);//スピナーの処理を反映させるための処理
+        //textViewP = (TextView)findViewById(R.id.result2);
+        //String str2 = spinner2.getSelectedItem().toString();
+        //textViewP.setText(str2);
+        //Spinner spinner3 = (Spinner)findViewById(spinner);
+        //textViewM = (TextView)findViewById(R.id.result3);
+        //String str3 = spinner3.getSelectedItem().toString();
+        //textViewM.setText(str3);
 
     }
 
@@ -82,7 +84,9 @@ public class SearchActivity extends AppCompatActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
+
         getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_input_event,menu);
 
         MenuItem addEvent = menu.findItem(R.id.menu_item_add_event_main);
         addEvent.setOnMenuItemClickListener(
@@ -115,7 +119,19 @@ public class SearchActivity extends AppCompatActivity implements
                     }
                 });
 
-
+        /*MenuItem save_button = menu.findItem(R.id.menu_item_save_event);
+        save_button.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem){
+                        textS = null;
+                        Intent intent = new Intent(SearchActivity.this,MainActivity.class);
+                        intent.putExtra("KEY",textS.getText().toString());
+                        startActivity(intent);
+                        //finish();
+                        return true;
+                    }
+                });*/
         return  true;
     }
 }

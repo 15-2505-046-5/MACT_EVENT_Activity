@@ -102,20 +102,20 @@
         android:entries="@array/cost_list"
         android:popupBackground="@android:color/background_light"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cateSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/cateSpinner"
+        android:layout_marginStart="24dp" />
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="wrap_content"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="ジャンル"
-        android:textSize="30sp"
+        android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/result2"
-        app:layout_constraintTop_toBottomOf="@+id/deButton" />
+        app:layout_constraintTop_toBottomOf="@+id/deButton"
+        tools:layout_editor_absoluteX="8dp" />
 
     <Button
         android:id="@+id/deButton"
@@ -128,36 +128,8 @@
         android:text="選択した条件を設定"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-    <TextView
-        android:id="@+id/result2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="都道府県"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deButton" />
-
-    <TextView
-        android:id="@+id/result3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:text="費用"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintLeft_toRightOf="@+id/result"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deButton"
-        app:layout_constraintVertical_bias="0.508" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
 </android.support.constraint.ConstraintLayout>

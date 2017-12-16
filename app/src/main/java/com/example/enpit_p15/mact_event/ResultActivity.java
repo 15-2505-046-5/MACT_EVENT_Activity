@@ -31,6 +31,7 @@ public class ResultActivity extends AppCompatActivity
 
         mRealm = Realm.getDefaultInstance();
 
+        //変数の受け取り
         Intent intent = getIntent();
         CostTxt = intent.getStringExtra("COST");
         CateTxt = intent.getStringExtra("CATE");
@@ -70,7 +71,7 @@ public class ResultActivity extends AppCompatActivity
     /*EventListFragmentを呼び出す。　なんかいろいろやってる p293*/
     private void showEventList(){
         FragmentManager manager = getSupportFragmentManager();
-        Fragment fragment = manager.findFragmentByTag("EventListFragment");
+        Fragment fragment = manager.findFragmentByTag("ResultListFragment");
         if(fragment == null){
             //Fragmentへ変数の受け渡し
             Bundle args = new Bundle();
@@ -82,7 +83,7 @@ public class ResultActivity extends AppCompatActivity
             //
             fragment = new EventListFragment();
             FragmentTransaction transaction = manager.beginTransaction();
-            transaction.add(R.id.content, fragment, "EventListFragment");
+            transaction.add(R.id.content, fragment, "ResultListFragment");
             transaction.commit();
         }
     }

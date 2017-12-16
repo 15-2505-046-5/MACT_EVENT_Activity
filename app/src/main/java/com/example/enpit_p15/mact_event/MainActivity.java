@@ -1,5 +1,6 @@
 package com.example.enpit_p15.mact_event;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,10 @@ public class MainActivity extends AppCompatActivity
         implements EventListFragment.OnFragmentInteractionListener {
 
     private Realm mRealm;
+    private String CostTxt;
+    private String CateTxt;
+    private String PrefTxt;
+    private String KeyTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +29,16 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("いぽかつ");
 
         mRealm = Realm.getDefaultInstance();
+
+        Intent intent = getIntent();
+        //変数の受け取り　searchActivity
+        //CostTxt = intent.getStringExtra("COST");
+        //CateTxt = intent.getStringExtra("CATE");
+        //PrefTxt = intent.getStringExtra("PREF");
+        KeyTxt = intent.getStringExtra("KEY");
 
         //createTestDate();
         showEventList();  //EventListFragmentを表示する処理
@@ -63,15 +76,22 @@ public class MainActivity extends AppCompatActivity
         if(fragment == null){
             //Fragmentへ変数の受け渡し
             Bundle args = new Bundle();
-            args.putString("CATEGORY","かてぎおり");
-            args.putString("PREF","とどーふけん");
-            args.putString("COST","費用");
+            //args.putString("CATE",CateTxt);
+            //args.putString("PREF",PrefTxt);
+            //args.putString("COST",CostTxt);
+            args.putString("KEY",KeyTxt);
 
-            //
-            fragment = new EventListFragment();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.add(R.id.content, fragment, "EventListFragment");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            EventListFragment fragment1 = new EventListFragment();
+            fragment1.setArguments(args);
+            transaction.add(R.id.content,fragment1,"EventListFragment");
             transaction.commit();
+
+            //本来の形
+            //fragment = new EventListFragment();
+            //FragmentTransaction transaction = manager.beginTransaction();
+            //transaction.add(R.id.content, fragment, "EventListFragment");
+            //transaction.commit();
         }
     }
 /*ここまで*/

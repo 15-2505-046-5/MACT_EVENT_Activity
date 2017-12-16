@@ -1,57 +1,36 @@
 package com.example.enpit_p15.mact_event;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import io.realm.Realm;
-import io.realm.RealmRecyclerViewAdapter;
 import io.realm.RealmResults;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ResultListFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ResultListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ResultListFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class ResultListFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private Realm mRealm;
     private String CateText;
     private String CostText;
     private String PrefectureText;
+    private String KeyWord;
 
     public ResultListFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ResultListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ResultListFragment newInstance() {
         ResultListFragment fragment = new ResultListFragment();
         return fragment;
@@ -69,22 +48,17 @@ public class ResultListFragment extends Fragment {
         mRealm.close();
     }
 
-    /*フラグメントのライフサイクルメソッド*/
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState){
-        super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(true);  //オプションメニューの準備。これでonCreateOptionMenuが呼ばれる
-        //MainActivity から　値受け取り
-        PrefectureText = getArguments().getString("PREF");
-        CateText = getArguments().getString("CATEGORY");
-        CostText = getArguments().getString("COST");
-
-    }
 /*ここまで*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //  receive from ResultActivity
+        PrefectureText = getArguments().getString("PREF");
+        CateText = getArguments().getString("CATEGORY");
+        CostText = getArguments().getString("COST");
+        KeyWord = getArguments().getString("KEY");
+
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_result_list,container,false);
@@ -107,13 +81,6 @@ public class ResultListFragment extends Fragment {
         return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-           // mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -131,18 +98,72 @@ public class ResultListFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+
         //void onAddDiarySelected();
     }
+
+    /*フラグメントのライフサイクルメソッド*/
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        setHasOptionsMenu(true);  //オプションメニューの準備。これでonCreateOptionMenuが呼ばれる
+        //ResultActivity から　値受け取り
+
+    }
+
+    /*オプションメニューのやつ　p318、p319　　メニューの項目をインスタンス化して設定した*/
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu,inflater);
+        inflater.inflate(R.menu.menu_event_list,menu);
+        MenuItem addEvent = menu.findItem(R.id.menu_item_add_event);
+        MenuItem deleteAll = menu.findItem(R.id.menu_item_delete_all);
+        MenuItem searchEvent = menu.findItem(R.id.menu_item_search);
+
+
+
+        MyUtils.tintMenuIcon(getContext(),addEvent,android.R.color.white);
+        MyUtils.tintMenuIcon(getContext(),deleteAll,android.R.color.white);
+        MyUtils.tintMenuIcon(getContext(),searchEvent,android.R.color.white);
+
+    }
+/*ここまで*/
+
+    /*オプションメニューのやつ　p318、p319　　メニューがタップされたときに呼び出される*/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()){  //メニュー項目のIDを取得してswitch文に使用
+            case R.id.menu_item_add_event:  //追加がタップされた時の処理-1
+                if (mListener != null){
+                    Intent intent_toukou = new Intent(this.getActivity(), RadioButtons.class);
+                    startActivity(intent_toukou);
+                    // mListener.onAddEventSelected();
+                }
+                return true;
+
+            case R.id.menu_item_delete_all:
+                final RealmResults<Schedule> diaries =
+                        mRealm.where(Schedule.class).findAll();
+                mRealm.executeTransaction(new Realm.Transaction(){
+                    @Override
+                    public void execute(Realm realm){
+                        diaries.deleteAllFromRealm();
+                    }
+                });
+                return true;
+            case R.id.menu_item_search:  //検索がタップされた時の処理
+                if(mListener != null){
+                    Intent intent_search = new Intent(this.getActivity(),SearchActivity.class);
+                    //Intent intent = new Intent(EventListFragment.this, Toukou.class);
+                    startActivity(intent_search);
+                }
+                return  true;
+
+        }
+        return  false;
+    }
+
 }

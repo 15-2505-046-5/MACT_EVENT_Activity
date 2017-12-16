@@ -23,6 +23,11 @@ public class EventListFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private Realm mRealm;
+    private String temp;
+    private String CateText;
+    private String CostText;
+    private String PrefectureText;
+    private String KeyWord;
 
 
     public EventListFragment() {
@@ -53,6 +58,13 @@ public class EventListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //  receive from ResultActivity
+        //PrefectureText = getArguments().getString("PREF");
+        //CateText = getArguments().getString("CATEGORY");
+        //CostText = getArguments().getString("COST");
+        KeyWord = getArguments().getString("KEY");
+
+        //temp = String.valueOf("きららファンタジア");     //titleの検索条件　完全一致
 
         View v = inflater.inflate(R.layout.fragment_event_list,container,false); //xmlファイルを適応して画面の作成
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
@@ -62,7 +74,7 @@ public class EventListFragment extends Fragment {
 
         recyclerView.setLayoutManager(llm);  //リスト表示とスクロールを紐づけする
         //検索条件　.equalTo("id:schedule","**Text")
-        RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得 検索条件の設定
+        RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
         EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
         //ここでデータが更新されるとアダプターも更新されるため、最新の状態が表示される
 

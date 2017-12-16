@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ public class SearchActivity extends AppCompatActivity implements
     public TextView textViewM; //費用
     public TextView textViewP; //都道府県
     public TextView textViewC; //ジャンル
-    public TextView textViewS; //検索ボックス
+    public EditText textS; //検索ボックス
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +31,19 @@ public class SearchActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_search2);
         setTitle("検索");
         textView = (TextView) findViewById(R.id.DateText);
-        textViewS = (TextView)findViewById(R.id.SearchText);
+        textS = (EditText) findViewById(R.id.SearchText);
 
         Button button = (Button)findViewById(R.id.SearchButton);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 //変数の受け渡し
-                Intent intent = new Intent(getApplication(),MainActivity.class);
-                intent.putExtra("PREF", (CharSequence) textViewP);
-                intent.putExtra("CATE", (CharSequence) textViewC);
-                intent.putExtra("COST", (CharSequence) textViewM);
-                intent.putExtra("KEY",(CharSequence)textViewS);
+                Intent intent = new Intent(SearchActivity.this,MainActivity.class);
+                //intent.putExtra("PREF", (CharSequence) textViewP);
+                //intent.putExtra("CATE", (CharSequence) textViewC);
+                //intent.putExtra("COST", (CharSequence) textViewM);
+                intent.putExtra("KEY",textS.getText().toString());
                 startActivity(intent);
-
             }
 
 
@@ -65,8 +65,6 @@ public class SearchActivity extends AppCompatActivity implements
         textViewM = (TextView)findViewById(R.id.result3);
         String str3 = spinner3.getSelectedItem().toString();
         textViewM.setText(str3);
-
-
 
     }
 

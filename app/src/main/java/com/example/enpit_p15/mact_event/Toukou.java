@@ -114,8 +114,8 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
                    new MenuItem.OnMenuItemClickListener() {
                        @Override
                        public boolean onMenuItemClick(MenuItem menuItem) {
-                           Intent intent_SeachActivity = new Intent(Toukou.this, SearchActivity.class);  //ToukouからSearchActivityに移動
-                           startActivity(intent_SeachActivity);
+                           Intent intent_SearchActivity = new Intent(Toukou.this, SearchActivity.class);  //ToukouからSearchActivityに移動
+                           startActivity(intent_SearchActivity);
                            return true;
                        }
                    });

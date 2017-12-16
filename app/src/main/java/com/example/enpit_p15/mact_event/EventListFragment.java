@@ -27,7 +27,8 @@ public class EventListFragment extends Fragment {
     private String CateText;
     private String CostText;
     private String PrefectureText;
-    private String KeyWord;
+    private String KeyWord = "def";
+    public int count = 0;
 
 
     public EventListFragment() {
@@ -74,11 +75,26 @@ public class EventListFragment extends Fragment {
 
         recyclerView.setLayoutManager(llm);  //リスト表示とスクロールを紐づけする
         //検索条件　.equalTo("id:schedule","**Text")
-        RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
-        EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+        //RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得 検索条件の設定
+        //EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
         //ここでデータが更新されるとアダプターも更新されるため、最新の状態が表示される
 
-        recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        //test
+        //検索条件　.equalTo("id:schedule","**Text")
+        if(KeyWord!=null) {
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("title", KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else{
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+            count++;
+        }
+        //ここでデータが更新されるとアダプターも更新されるため、最新の状態が表示される
+
+
+        //recyclerView.setAdapter(adapter);  //作成したアダプターの設定
         return v;  //作成した画面を返す
     }
 

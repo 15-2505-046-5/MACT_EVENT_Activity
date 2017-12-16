@@ -18,69 +18,82 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 
+
 public class ResultListFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private Realm mRealm;
+    private String temp;
     private String CateText;
     private String CostText;
     private String PrefectureText;
-    private String KeyWord;
+    private String KeyWord = "defs";
+
+
 
     public ResultListFragment() {
         // Required empty public constructor
     }
 
-    public static ResultListFragment newInstance() {
+    public static ResultListFragment newInstance(){
         ResultListFragment fragment = new ResultListFragment();
         return fragment;
     }
 
+    /*Realmの取得*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRealm  = Realm.getDefaultInstance();
+        mRealm = Realm.getDefaultInstance();
     }
+/*ここまで*/
 
+    /*Realmを閉じる処理*/
     @Override
     public void onDestroy(){
         super.onDestroy();
         mRealm.close();
     }
-
 /*ここまで*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //  receive from ResultActivity
-        PrefectureText = getArguments().getString("PREF");
-        CateText = getArguments().getString("CATEGORY");
-        CostText = getArguments().getString("COST");
+        //PrefectureText = getArguments().getString("PREF");
+        //CateText = getArguments().getString("CATEGORY");
+        //CostText = getArguments().getString("COST");
         KeyWord = getArguments().getString("KEY");
+        int count = 0;
 
-        // Inflate the layout for this fragment
+        //temp = String.valueOf("きららファンタジア");     //titleの検索条件　完全一致
 
-        View v = inflater.inflate(R.layout.fragment_result_list,container,false);
-        RecyclerView recyclerView = (RecyclerView)v.findViewById(R.id.recycler);
+        View v = inflater.inflate(R.layout.fragment_event_list,container,false); //xmlファイルを適応して画面の作成
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());  //リスト表示するために必要なクラスのインスタンスを生成
+        llm.setOrientation(LinearLayoutManager.VERTICAL);  //スクロールを縦に設定
 
-        recyclerView.setLayoutManager(llm);
+        recyclerView.setLayoutManager(llm);  //リスト表示とスクロールを紐づけする
 
-        //equalTo()で検索条件追加
-        RealmResults<Schedule> results = mRealm.where(Schedule.class).findAll();
+        //検索条件　.equalTo("id:schedule","**Text")
+        if(count!=0) {
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("title", KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+            count++;
+        }else{
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }
+        //ここでデータが更新されるとアダプターも更新されるため、最新の状態が表示される
 
-        EventRealmAdapter adapter =
-                new EventRealmAdapter(getActivity(),results,true);
-
-        recyclerView.setAdapter(adapter);
-
-
-        return v;
+        //recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        return v;  //作成した画面を返す
     }
 
+    /*フラグメントのライフサイクルメソッド*/
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -91,17 +104,18 @@ public class ResultListFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+/*ここまで*/
 
+    /*フラグメントのライフサイクルメソッド*/
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
+/*ここまで*/
 
-
-    public interface OnFragmentInteractionListener {
-
-        //void onAddDiarySelected();
+    public interface OnFragmentInteractionListener {  //onAttach内で使用しているインターフェイスの定義
+        void onAddEventSelected();  //日記の新規作成を行うメソッドの定義
     }
 
     /*フラグメントのライフサイクルメソッド*/
@@ -109,9 +123,9 @@ public class ResultListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);  //オプションメニューの準備。これでonCreateOptionMenuが呼ばれる
-        //ResultActivity から　値受け取り
 
     }
+/*ここまで*/
 
     /*オプションメニューのやつ　p318、p319　　メニューの項目をインスタンス化して設定した*/
     @Override
@@ -165,5 +179,6 @@ public class ResultListFragment extends Fragment {
         }
         return  false;
     }
+/*ここまで*/
 
 }

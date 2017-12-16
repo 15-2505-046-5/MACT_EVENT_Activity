@@ -6,13 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import io.realm.Realm;
-
 
 public class ResultActivity extends AppCompatActivity
         implements EventListFragment.OnFragmentInteractionListener {
@@ -22,22 +22,23 @@ public class ResultActivity extends AppCompatActivity
     private String CateTxt;
     private String PrefTxt;
     private String KeyTxt;
-    private String deftxt = String.valueOf(0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result2);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("検索結果");
 
         mRealm = Realm.getDefaultInstance();
 
-        //変数の受け取り
         Intent intent = getIntent();
-        CostTxt = intent.getStringExtra("COST");
-        CateTxt = intent.getStringExtra("CATE");
-        PrefTxt = intent.getStringExtra("PREF");
+        //変数の受け取り　searchActivity
+        //CostTxt = intent.getStringExtra("COST");
+        //CateTxt = intent.getStringExtra("CATE");
+        //PrefTxt = intent.getStringExtra("PREF");
         KeyTxt = intent.getStringExtra("KEY");
-
 
         //createTestDate();
         showEventList();  //EventListFragmentを表示する処理
@@ -71,23 +72,30 @@ public class ResultActivity extends AppCompatActivity
     /*EventListFragmentを呼び出す。　なんかいろいろやってる p293*/
     private void showEventList(){
         FragmentManager manager = getSupportFragmentManager();
-        Fragment fragment = manager.findFragmentByTag("ResultListFragment");
+        Fragment fragment = manager.findFragmentByTag("EventListFragment");
         if(fragment == null){
             //Fragmentへ変数の受け渡し
             Bundle args = new Bundle();
-            args.putString("CATE",deftxt);
-            args.putString("PREF",deftxt);
-            args.putString("COST",deftxt);
-            args.putString("KEY",deftxt);
+            //args.putString("CATE",CateTxt);
+            //args.putString("PREF",PrefTxt);
+            //args.putString("COST",CostTxt);
+            args.putString("KEY",KeyTxt);
 
-            //
-            fragment = new EventListFragment();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.add(R.id.content, fragment, "ResultListFragment");
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            EventListFragment fragment1 = new EventListFragment();
+            fragment1.setArguments(args);
+            transaction.add(R.id.content,fragment1,"EventListFragment");
             transaction.commit();
+
+            //本来の形
+            //fragment = new EventListFragment();
+            //FragmentTransaction transaction = manager.beginTransaction();
+            //transaction.add(R.id.content, fragment, "EventListFragment");
+            //transaction.commit();
         }
     }
 /*ここまで*/
+
 
     /*日記追加の処理*/
     @Override

@@ -1,5 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name = "year_list">
+        <item>年</item>
+        <item>2017年</item>
+        <item>2018年</item>
+        <item>2019年</item>
+        <item>2020年</item>
+        <item>2021年</item>
+        <item>2022年</item>
+        <item>2023年</item>
+        <item>2024年</item>
+        <item>2025年</item>
+    </string-array>
+    <string-array name = "month_list">
+        <item>月</item>
+        <item>01月</item>
+        <item>02月</item>
+        <item>03月</item>
+        <item>04月</item>
+        <item>05月</item>
+        <item>06月</item>
+        <item>07月</item>
+        <item>08月</item>
+        <item>09月</item>
+        <item>10月</item>
+        <item>11月</item>
+        <item>12月</item>
+    </string-array>
+    <string-array name = "day_list">
+        <item>日</item>
+        <item>01日</item>
+        <item>02日</item>
+        <item>03日</item>
+        <item>04日</item>
+        <item>05日</item>
+        <item>06日</item>
+        <item>07日</item>
+        <item>08日</item>
+        <item>09日</item>
+        <item>10日</item>
+        <item>11日</item>
+        <item>12日</item>
+        <item>13日</item>
+        <item>14日</item>
+        <item>15日</item>
+        <item>16日</item>
+        <item>17日v</item>
+        <item>18日</item>
+        <item>19日</item>
+        <item>20日</item>
+        <item>21日</item>
+        <item>22日</item>
+        <item>23日</item>
+        <item>24日</item>
+        <item>25日</item>
+        <item>26日</item>
+        <item>27日</item>
+        <item>28日</item>
+        <item>29日</item>
+        <item>30日</item>
+        <item>31日</item>
+    </string-array>
     <string-array name = "category_list">
         <item>ジャンルから選ぶ</item>
         <item>季節のイベント</item>

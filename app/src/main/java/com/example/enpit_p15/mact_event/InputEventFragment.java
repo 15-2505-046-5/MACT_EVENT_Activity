@@ -35,8 +35,10 @@ import io.realm.Realm;
 import static android.app.Activity.RESULT_OK;
 
 //画像の表示、教P164,P91,305
-public class InputEventFragment extends Fragment {
+public class InputEventFragment extends Fragment{
     private static final String EVENT_ID = "EVENT_ID";
+
+
     private static final int REQUEST_CODE = 1;
     private static final int PERMISSION_REQUEST_CODE = 2;
     private static final String TAG = InputEventFragment.class.getSimpleName();
@@ -47,6 +49,7 @@ public class InputEventFragment extends Fragment {
     private EditText mBodyEdit;
     private EditText mDate;
     private ImageView mEventImage;
+    private String str_ymd;
 
     public static InputEventFragment newInstance(long eventId) {  //フラグメントのインスタンスを作成する
         /*引数として受け取った日記のIDをフラグメントに保存する*/
@@ -79,7 +82,7 @@ public class InputEventFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_input_event, container, false);
         mTitleEdit = (EditText) v.findViewById(R.id.title);
         mBodyEdit = (EditText) v.findViewById(R.id.bodyEditText);
-        mDate = (EditText) v.findViewById(R.id.date);
+        //mDate = (EditText) v.findViewById(R.id.date);
         mEventImage = (ImageView) v.findViewById(R.id.format_photo);
 
         //スピナーの実装
@@ -87,22 +90,82 @@ public class InputEventFragment extends Fragment {
         String[] ctg = getResources().getStringArray(R.array.category_list); //スピナーのリスト（ジャンル）
         String[] prf = getResources().getStringArray(R.array.prefecture_list);//スピナーのリスト（都道府県）
         String[] cost = getResources().getStringArray(R.array.cost_list);//スピナーのリスト(予算)
+        String[] year_s = getResources().getStringArray(R.array.year_list); //スピナーのリスト（年）
+        String[] month_s = getResources().getStringArray(R.array.month_list);//スピナーのリスト（月）
+        String[] day_s = getResources().getStringArray(R.array.day_list);//スピナーのリスト(日)
 
         Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
         Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
         Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
+        Spinner spinner_y = (Spinner) v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
+        Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
+        Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
 
         ArrayAdapter<String> adapter_c = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, ctg);//スピナー展開時の表示方法の指定
         ArrayAdapter<String> adapter_p = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, prf);
         ArrayAdapter<String> adapter_ct = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, cost);
+        ArrayAdapter<String> adapter_y = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, year_s);
+        ArrayAdapter<String> adapter_m = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, month_s);
+        ArrayAdapter<String> adapter_d = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, day_s);
 
         adapter_c.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //アダプターをスピナーに設定:ジャンル
         adapter_p.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //都道府県
         adapter_ct.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //予算
+        adapter_y.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //アダプターをスピナーに設定:年
+        adapter_m.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //月
+        adapter_d.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //日
+
 
         spinner_c.setAdapter(adapter_c);//イベントリスナーの登録:ジャンル
         spinner_p.setAdapter(adapter_p);//イベントリスナーの登録:都道府県
         spinner_ct.setAdapter(adapter_ct);//イベントリスナーの登録:予算
+        spinner_y.setAdapter(adapter_y);//イベントリスナーの登録:年
+        spinner_m.setAdapter(adapter_m);//イベントリスナーの登録:月
+        spinner_d.setAdapter(adapter_d);//イベントリスナーの登録:日
+
+
+        String str_c = spinner_c.getSelectedItem().toString();
+        String str_p = spinner_p.getSelectedItem().toString();
+        String str_ct = spinner_ct.getSelectedItem().toString();
+        String str_y = spinner_y.getSelectedItem().toString();
+        String str_m = spinner_m.getSelectedItem().toString();
+        String str_d = spinner_d.getSelectedItem().toString();
+
+        str_ymd = str_y + str_m + str_d;
+
+
+        /*Button mButton = v.findViewById(R.id.Hanei);
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
+                Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
+                Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
+                Spinner spinner_y = (Spinner) v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
+                Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
+                Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
+
+
+                String str_c = spinner_c.getSelectedItem().toString();
+                String str_p = spinner_p.getSelectedItem().toString();
+                String str_ct = spinner_ct.getSelectedItem().toString();
+                String str_y = spinner_y.getSelectedItem().toString();
+                String str_m = spinner_m.getSelectedItem().toString();
+                String str_d = spinner_d.getSelectedItem().toString();
+
+                final String str_ymd = str_y + str_m + str_d;
+
+               mRealm.executeTransactionAsync(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
+                            event.date = str_ymd.toString();  //年月日の中身をデータベースに格納
+                        }
+                });
+            }
+        }); */
 
         spinner_c.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -123,6 +186,8 @@ public class InputEventFragment extends Fragment {
                 requestReadStorage(view);
             }
         });  //タップした時の処理
+
+
 
         mTitleEdit.addTextChangedListener(new TextWatcher() {  //入力内容をデータベースに格納する
             @Override
@@ -161,36 +226,77 @@ public class InputEventFragment extends Fragment {
                     public void execute(Realm realm) {
                         Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
                         event.bodyText = s.toString();  //bodyTextの中身を格納
+                        event.date = str_ymd.toString();
                     }
                 });
             }
         });
 
-        mDate.addTextChangedListener(new TextWatcher() {  //入力内容をデータベースに格納する
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+        //mDate.addTextChangedListener(new TextWatcher() {  //入力内容をデータベースに格納する
+        //    @Override
+        //    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        //    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+         //   @Override
+         //   public void onTextChanged(CharSequence s, int start, int before, int count) {
+         //   }
 
-            @Override
-            public void afterTextChanged(final Editable s) {
-                mRealm.executeTransactionAsync(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
-                        event.date = s.toString();  //dateのデータベースに格納
-                    }
-                });
-            }
-        });
+         //   @Override
+         //   public void afterTextChanged(final Editable s) {
+         //       mRealm.executeTransactionAsync(new Realm.Transaction() {
+         //           @Override
+         //           public void execute(Realm realm) {
+         //              Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
+         //               event.date = s.toString();  //dateのデータベースに格納
+         //           }
+         //      });
+         //   }
+        //});
+
 
 
         return v;
 
     }
+
+   // @Override
+   // public void onActivityCreated(Bundle savedInstanceState) {
+   //     super.onActivityCreated(savedInstanceState);
+
+
+    //    Button mButton = (Button) getView().findViewById(R.id.Hanei);
+
+    //    mButton.setOnClickListener(new View.OnClickListener() {
+    //        @Override
+    //        public void onClick(View v) {
+
+    //            Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
+    //            Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
+    //            Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
+    //            Spinner spinner_y = (Spinner) v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
+    //            Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
+    //            Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
+
+
+     //           String str_c = spinner_c.getSelectedItem().toString();
+     //           String str_p = spinner_p.getSelectedItem().toString();
+     //           String str_ct = spinner_ct.getSelectedItem().toString();
+     //           String str_y = spinner_y.getSelectedItem().toString();
+     //           String str_m = spinner_m.getSelectedItem().toString();
+     //           String str_d = spinner_d.getSelectedItem().toString();
+
+     //           final String str_ymd = str_y + str_m + str_d;
+
+     //           mRealm.executeTransactionAsync(new Realm.Transaction() {
+     //               @Override
+     //               public void execute(Realm realm) {
+     //                   Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
+     //                   event.date = str_ymd.toString();  //dateのデータベースに格納
+     //               }
+     //           });
+      //      }
+     //   });
+    //}
 
 
 
@@ -299,6 +405,8 @@ public class InputEventFragment extends Fragment {
         switch (item.getItemId()){  //メニュー項目のIDを取得してswitch文に使用
             case R.id.menu_item_save_event:  //保存がタップされた時の処理
                 //getActivity().getFragmentManager().beginTransaction().remove().commit();
+
+
                 getFragmentManager().popBackStack();
              default:
         }
@@ -306,4 +414,32 @@ public class InputEventFragment extends Fragment {
         return false;
     }
 
+  //  @Override
+  //  public void onClick(View v) {
+  //
+    //    Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
+    //    Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
+    //    Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
+    //    Spinner spinner_y = (Spinner) v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
+    //    Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
+    //    Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
+
+
+     //   String str_c = spinner_c.getSelectedItem().toString();
+     //   String str_p = spinner_p.getSelectedItem().toString();
+     //   String str_ct = spinner_ct.getSelectedItem().toString();
+     //   String str_y = spinner_y.getSelectedItem().toString();
+     //   String str_m = spinner_m.getSelectedItem().toString();
+     //   String str_d = spinner_d.getSelectedItem().toString();
+
+     //   final String str_ymd = str_y + str_m + str_d;
+
+     //   mRealm.executeTransactionAsync(new Realm.Transaction() {
+     //                  @Override
+     //                  public void execute(Realm realm) {
+     //                     Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
+     //                      event.date = str_ymd.toString();  //dateのデータベースに格納
+     //                  }
+     //             });
+    //}
 }

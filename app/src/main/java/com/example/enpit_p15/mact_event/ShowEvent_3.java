@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import io.realm.Realm;
 
-public class ShowEvent_4 extends AppCompatActivity {
+public class ShowEvent_3 extends AppCompatActivity {
 
     public static final String EVENT_ID = "EVENT_ID";
     private static final long ERR_CD = -1;
@@ -25,7 +25,7 @@ public class ShowEvent_4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_event_4);
+        setContentView(R.layout.activity_show_event_3);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -36,15 +36,15 @@ public class ShowEvent_4 extends AppCompatActivity {
 
         Schedule event = mRealm.where(Schedule.class).equalTo("id",eventId).findFirst();  //IDをもとにRealmデータベースを検索してデータの取得
 
-        TextView body_s = (TextView)findViewById(R.id.body_show4);
+        TextView body_s = (TextView)findViewById(R.id.body_show3);
         mBodyText = event.bodyText;  //変数に取得した本文を格納
         body_s.setText(event.bodyText);  //本文を表示
 
-        TextView title_s = (TextView)findViewById(R.id.title_show4);
+        TextView title_s = (TextView)findViewById(R.id.title_show3);
         mTitleText = event.title;  //変数に取得した本文を格納
         title_s.setText(event.title);  //本文を表示
 
-        TextView date_s = (TextView)findViewById(R.id.date_show4);
+        TextView date_s = (TextView)findViewById(R.id.date_show3);
         mDateText = event.date;  //変数に取得した本文を格納
         date_s.setText(event.date);  //本文を表示
     }
@@ -59,7 +59,7 @@ public class ShowEvent_4 extends AppCompatActivity {
                 new MenuItem.OnMenuItemClickListener(){
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem){
-                        Intent intent_Toukou = new Intent(ShowEvent_4.this, RadioButtons.class);  //ShowEvent_4からToukouに移動
+                        Intent intent_Toukou = new Intent(ShowEvent_3.this, RadioButtons.class);  //ShowEvent_3からToukouに移動
                         startActivity(intent_Toukou);
                         return true;
                     }
@@ -70,7 +70,7 @@ public class ShowEvent_4 extends AppCompatActivity {
                 new MenuItem.OnMenuItemClickListener(){
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem){
-                        Intent intent_Toukou = new Intent(ShowEvent_4.this, SearchActivity.class);  //ShowEvent_4からToukouに移動
+                        Intent intent_Toukou = new Intent(ShowEvent_3.this, SearchActivity.class);  //ShowEvent_3tからToukouに移動
                         startActivity(intent_Toukou);
                         return true;
                     }

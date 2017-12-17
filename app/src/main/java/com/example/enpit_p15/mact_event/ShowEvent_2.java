@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import io.realm.Realm;
@@ -45,5 +47,46 @@ public class ShowEvent_2 extends AppCompatActivity {
         TextView date_s = (TextView)findViewById(R.id.date_show);
         mDateText = event.date;  //変数に取得した本文を格納
         date_s.setText(event.date);  //本文を表示
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        getMenuInflater().inflate(R.menu.menu_show_event,menu);
+
+        MenuItem addEvent = menu.findItem(R.id.menu_item_add_event_sub);
+        addEvent.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem){
+                        Intent intent_Toukou = new Intent(ShowEvent_2.this, RadioButtons.class);  //ShowEvent_2からToukouに移動
+                        startActivity(intent_Toukou);
+                        return true;
+                    }
+                });
+
+        final MenuItem search_button = menu.findItem(R.id.menu_item_search_sub);
+        search_button.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem){
+                        Intent intent_Toukou = new Intent(ShowEvent_2.this, SearchActivity.class);  //ShowEvent_2tからToukouに移動
+                        startActivity(intent_Toukou);
+                        return true;
+                    }
+                });
+
+
+        MenuItem return_button = menu.findItem(R.id.menu_item_finish);
+        return_button.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener(){
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem){
+                        finish();
+                        return true;
+                    }
+                });
+
+        return  true;
     }
 }

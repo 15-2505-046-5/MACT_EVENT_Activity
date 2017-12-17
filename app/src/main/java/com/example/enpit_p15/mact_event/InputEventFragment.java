@@ -93,18 +93,18 @@ public class InputEventFragment extends Fragment{
         String[] month_s = getResources().getStringArray(R.array.month_list);//スピナーのリスト（月）
         String[] day_s = getResources().getStringArray(R.array.day_list);//スピナーのリスト(日)
 
-        Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
-        Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
-        Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
-        Spinner spinner_y = (Spinner) v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
-        Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
-        Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
+        final Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
+        final Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
+        final Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
+        final Spinner spinner_y = v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
+        final Spinner spinner_m = v.findViewById(R.id.monthSpinner);//(月)
+        final Spinner spinner_d = v.findViewById(R.id.daySpinner);//(日)
 
-        String selected_y = (String) spinner_y.getSelectedItem();
-        String selected_m = (String) spinner_m.getSelectedItem();
-        String selected_d = (String) spinner_d.getSelectedItem();
+        //String selected_y = spinner_y.getSelectedItem().toString();
+        //String selected_m = spinner_m.getSelectedItem().toString();
+        //String selected_d = spinner_d.getSelectedItem().toString();
 
-        str_ymd = selected_y + selected_m + selected_d;
+        //str_ymd = selected_y +"/" +selected_m+"/" + selected_d;
 
 
         /*<String> adapter_c = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, ctg);//スピナー展開時の表示方法の指定
@@ -149,6 +149,15 @@ public class InputEventFragment extends Fragment{
                         @Override
                         public void execute(Realm realm) {
                             Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
+
+                            String selected_c = spinner_c.getSelectedItem().toString();
+                            String selected_p = spinner_p.getSelectedItem().toString();
+                            String selected_ct = spinner_ct.getSelectedItem().toString();
+                            String selected_y = spinner_y.getSelectedItem().toString();
+                            String selected_m = spinner_m.getSelectedItem().toString();
+                            String selected_d = spinner_d.getSelectedItem().toString();
+
+                            str_ymd = selected_y +"/" +selected_m+"/" + selected_d;
                             event.date = str_ymd.toString();  //年月日の中身をデータベースに格納
                         }
                 });

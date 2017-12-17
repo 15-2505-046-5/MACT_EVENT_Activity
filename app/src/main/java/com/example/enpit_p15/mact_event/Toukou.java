@@ -37,7 +37,7 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         //activity間のデータの受け取り部分、テスト用
         Intent intent = getIntent();
         int formatID = intent.getIntExtra("FormatData", 0);
-
+        //Toast.makeText(Toukou.this, formatID, Toast.LENGTH_SHORT).show();
 
 
         Button save_button = (Button) findViewById(R.id.save_button);
@@ -78,8 +78,8 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         FragmentManager manager = getSupportFragmentManager();
 
 
-        //Bundle args = new Bundle();
-        //args.putInt("FormatID",formatID);
+        Bundle args = new Bundle();
+        args.putInt("FormatID",formatID);
         //inputEventFragment.setArguments(args);
 
         FragmentTransaction transaction = manager.beginTransaction();

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class RadioButtons extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class RadioButtons extends AppCompatActivity {
 
         //public void onRadioButtonClicked(View v){
         //ラジオボタンの実装
-        //    TextView tv = (TextView)findViewById(R.id.TextView_test);
+         //   TextView tv = (TextView)findViewById(R.id.textView_test);
         //   RadioButton radioButton = (RadioButton)findViewById(R.id.radioButton);
         //    RadioButton radioButton2 = (RadioButton)findViewById(R.id.radioButton2);
         //    RadioButton radioButton3 = (RadioButton)findViewById(R.id.radioButton3);
@@ -48,25 +49,25 @@ public class RadioButtons extends AppCompatActivity {
 
                             @Override
                             public void onCheckedChanged(RadioGroup group,int checkedId){
-                                //TextView tv = (TextView)findViewById(R.id.textView_test);
+                                TextView tv = (TextView)findViewById(R.id.textView_test);
                                 //TextView tv2 = (TextView)findViewById(R.id.textView_test3);
                                 switch (checkedId){
                                     case R.id.radioButton:
-                                        //tv.setText("フォーマット１");
+                                        //tv.setText("");
                                         formatdata  = 1;
                                         //formatdata_grobal = (EventApplication) this.getApplication();
-                                        //tv2.setText(String.valueOf(formatdata));
+                                        tv.setText(String.valueOf(formatdata));
                                         break;
                                     case R.id.radioButton2:
                                         //tv.setText("フォーマット２");
                                         formatdata  = 2;
-                                        //tv2.setText(String.valueOf(formatdata));
+                                        tv.setText(String.valueOf(formatdata));
 
                                         break;
                                     case R.id.radioButton3:
                                         //tv.setText("フォーマット３");
                                         formatdata = 3;
-                                        //tv2.setText(String.valueOf(formatdata));
+                                        tv.setText(String.valueOf(formatdata));
                                         break;
                                 }
                             }

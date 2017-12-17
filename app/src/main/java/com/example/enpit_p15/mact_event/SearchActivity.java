@@ -89,7 +89,6 @@ public class SearchActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu){
 
         getMenuInflater().inflate(R.menu.menu_main,menu);
-        getMenuInflater().inflate(R.menu.menu_input_event,menu);
 
         MenuItem addEvent = menu.findItem(R.id.menu_item_add_event_main);
         addEvent.setOnMenuItemClickListener(

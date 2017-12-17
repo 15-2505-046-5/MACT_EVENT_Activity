@@ -15,21 +15,20 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.IOException;
 
 import io.realm.Realm;
 
 import static android.app.Activity.RESULT_OK;
+
 
 //画像の表示、教P164,P91,305
 public class InputEventFragment extends Fragment{
@@ -40,12 +39,20 @@ public class InputEventFragment extends Fragment{
     private static final int PERMISSION_REQUEST_CODE = 2;
     private static final String TAG = InputEventFragment.class.getSimpleName();
 
+    private boolean flag_spinner_ymad = false;
+    private boolean flag_spinner_c = false;
+    private boolean flag_spinner_p = false;
+    private boolean flag_spinner_ct = false;
+    private boolean flag_title = false;
+    private boolean flag_hanei = false;
     private long mEventId;
     private Realm mRealm;
     private EditText mTitleEdit;
     private EditText mBodyEdit;
     private ImageView mEventImage;
     private String str_ymd;
+    private String str_ymd_first;
+    //private Context mContext;
 
     public static InputEventFragment newInstance(long eventId) {  //フラグメントのインスタンスを作成する
         /*引数として受け取った日記のIDをフラグメントに保存する*/
@@ -60,6 +67,8 @@ public class InputEventFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //this.mContext = getActivity();
+
         if (getArguments() != null) {  //上で保存した日記のIDを変数に格納
             mEventId = getArguments().getLong(EVENT_ID);
         }
@@ -97,6 +106,7 @@ public class InputEventFragment extends Fragment{
         final Spinner spinner_m = v.findViewById(R.id.monthSpinner);//(月)
         final Spinner spinner_d = v.findViewById(R.id.daySpinner);//(日)
 
+        //str_ymd_first = spinner_y.getSelectedItem().toString() + spinner_m.getSelectedItem().toString() + spinner_d.getSelectedItem().toString();
 
 
         Button mButton = v.findViewById(R.id.Hanei);    //ボタン実装
@@ -118,14 +128,27 @@ public class InputEventFragment extends Fragment{
 
                             str_ymd = selected_y +"/" +selected_m+"/" + selected_d;
                             event.date = str_ymd.toString();  //スピナーの中身をデータベースに格納
+                            if(str_ymd==null||str_ymd.length()==0 /*.equals(str_ymd_first)*/){
+                                event.flag_spinner_ymad = true;
+                                //Toast.makeText(getActivity(), "日付を入力してください", Toast.LENGTH_SHORT).show();
+                            }
                             event.category = selected_c;
+                            if(selected_c.equals("ジャンルから選ぶ")){  flag_spinner_c = true; }
                             event.prefecture = selected_p;
+                            if(selected_p.equals("都道府県から選ぶ")){  flag_spinner_p = true; }
                             event.cost = selected_ct;
+                            if(selected_ct.equals("費用から選ぶ")){  flag_spinner_ct = true; }
+                            //Toast.makeText(getActivity(), "日付を入力してください", Toast.LENGTH_SHORT).show();
                         }
                 });
             }
         });
-
+                            if(flag_spinner_ymad){
+                                Toast.makeText(getActivity(), "日付を入力してください", Toast.LENGTH_SHORT).show();
+                            }
+                            if(flag_spinner_c){
+                                Toast.makeText(getActivity(), "ジャンルを入力してください", Toast.LENGTH_SHORT).show();
+                            }
 
 
         mEventImage.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +175,10 @@ public class InputEventFragment extends Fragment{
                     @Override
                     public void execute(Realm realm) {
                         Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
-                        event.title = s.toString();  //titleの中身をデータベースに格納
+                        if(s != null || s.length() != 0){   event.title = s.toString();  //titleの中身をデータベースに格納//
+                        }else{
+                            event.flag_title = true;
+                        }
                     }
                 });
             }
@@ -276,31 +302,47 @@ public class InputEventFragment extends Fragment{
     }
 
     /*オプションメニューのやつ　p318、p319　　メニューの項目をインスタンス化して設定した*/
-    @Override
+   /* @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
         super.onCreateOptionsMenu(menu,inflater);
         inflater.inflate(R.menu.menu_input_event,menu);
         MenuItem saveEvent = menu.findItem(R.id.menu_item_save_event);
 
         MyUtils.tintMenuIcon(getContext(),saveEvent,android.R.color.white);
-    }
+    }*/
 /*ここまで*/
 
-    /*オプションメニューのやつ　p318、p319　　メニューがタップされたときに呼び出される*/
-    @Override
+    //オプションメニューのやつ　p318、p319　　メニューがタップされたときに呼び出される*/
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item){
+
 
         switch (item.getItemId()){  //メニュー項目のIDを取得してswitch文に使用
             case R.id.menu_item_save_event:  //保存がタップされた時の処理
                 //getActivity().getFragmentManager().beginTransaction().remove().commit();
 
+                //if (getActivity() != null){
+                //    Toast.makeText(getActivity().getApplicationContext(), "xxxxxxx", Toast.LENGTH_LONG).show();
+                //}
 
-                getFragmentManager().popBackStack();
+                //Toast.makeText(mContext,"保存しました", LENGTH_LONG).show();
+                mRealm.executeTransactionAsync(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
+                        if(event.flag_title){
+
+                        }else{getFragmentManager().popBackStack();}
+                    }
+                });
+
+                Toast.makeText(getActivity(), getResources().getString(R.string.save_fragment), Toast.LENGTH_SHORT).show();
+
+                //getFragmentManager().popBackStack();
              default:
         }
 
         return false;
-    }
-
+    }*/
 
 }

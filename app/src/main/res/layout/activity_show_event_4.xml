@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/format2_changed"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.enpit_p15.mact_event.ShowEvent_4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/format2_changed"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="75dp">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/format2_changed">
+
+            <TextView
+                android:id="@+id/title_show4"
+                android:layout_width="400dp"
+                android:layout_height="250dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="50dp"
+                android:maxLines="2"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="?android:attr/colorEdgeEffect"
+                android:textSize="80sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/date_show4"
+                android:layout_width="400dp"
+                android:layout_height="75dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="50dp"
+                android:text="TextView"
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/white"
+                android:textSize="40sp"
+                app:layout_constraintLeft_toLeftOf="@+id/title_show"
+                app:layout_constraintRight_toRightOf="@+id/title_show"
+                app:layout_constraintTop_toBottomOf="@+id/title_show" />
+
+            <TextView
+                android:id="@+id/body_show4"
+                android:layout_width="400dp"
+                android:layout_height="600dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="100dp"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@android:color/white"
+                android:textSize="40sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_show" />
+
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

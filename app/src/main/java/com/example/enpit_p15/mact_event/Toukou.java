@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,12 +31,12 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         setContentView(R.layout.activity_toukou);  //activity_toukouを呼び出す
         setTitle("詳細入力");
 
-        //activity間のデータの受け取り部分
+        //activity間のデータの受け取り部分、テスト用
         Intent intent = getIntent();
         int formatID = intent.getIntExtra("FormatData", 0);
 
-        TextView textView = (TextView) findViewById(R.id.textView_test2);
-        textView.setText(String.valueOf(formatID));
+        //TextView textView = (TextView) findViewById(R.id.textView_test2);
+       // textView.setText(String.valueOf(formatID));
 
 
 
@@ -137,7 +136,7 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
                     new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
-                            Intent intent_MainActivity = new Intent(Toukou.this, MainActivity.class);  //ToukouからSearchActivityに移動
+                            Intent intent_MainActivity = new Intent(Toukou.this, MainActivity.class);  //ToukouからMainActivityに移動
                             startActivity(intent_MainActivity);
                             return true;
                         }

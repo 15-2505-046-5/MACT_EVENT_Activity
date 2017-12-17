@@ -124,7 +124,7 @@
         <item>沖縄県</item>
     </string-array>
     <string-array name = "cost_list">
-        <item>費用から選ぶ</item>
+        <item>参加費用から選ぶ</item>
         <item>無料</item>
         <item>～500円未満</item>
         <item>500円以上1000円未満</item>

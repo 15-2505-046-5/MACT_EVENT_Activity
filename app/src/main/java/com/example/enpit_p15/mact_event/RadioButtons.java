@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 public class RadioButtons extends AppCompatActivity {
 
@@ -49,25 +48,25 @@ public class RadioButtons extends AppCompatActivity {
 
                             @Override
                             public void onCheckedChanged(RadioGroup group,int checkedId){
-                                TextView tv = (TextView)findViewById(R.id.textView_test);
-                                TextView tv2 = (TextView)findViewById(R.id.textView_test3);
+                                //TextView tv = (TextView)findViewById(R.id.textView_test);
+                                //TextView tv2 = (TextView)findViewById(R.id.textView_test3);
                                 switch (checkedId){
                                     case R.id.radioButton:
-                                        tv.setText("フォーマット１");
+                                        //tv.setText("フォーマット１");
                                         formatdata  = 1;
                                         //formatdata_grobal = (EventApplication) this.getApplication();
-                                        tv2.setText(String.valueOf(formatdata));
+                                        //tv2.setText(String.valueOf(formatdata));
                                         break;
                                     case R.id.radioButton2:
-                                        tv.setText("フォーマット２");
+                                        //tv.setText("フォーマット２");
                                         formatdata  = 2;
-                                        tv2.setText(String.valueOf(formatdata));
+                                        //tv2.setText(String.valueOf(formatdata));
 
                                         break;
                                     case R.id.radioButton3:
-                                        tv.setText("フォーマット３");
+                                        //tv.setText("フォーマット３");
                                         formatdata = 3;
-                                        tv2.setText(String.valueOf(formatdata));
+                                        //tv2.setText(String.valueOf(formatdata));
                                         break;
                                 }
                             }
@@ -97,15 +96,15 @@ public class RadioButtons extends AppCompatActivity {
         });
 
                 /*過去の投稿に遷移するボタンの設定*/
-        Button send_past = (Button) findViewById(R.id.button_past);
-        send_past.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
-            @Override
-            public void onClick(View view) {
-                Intent intent_Toukou_past = new Intent(RadioButtons.this, Toukou_past.class);  //RadioButtonsからToukou_pastに移動
-                intent_Toukou_past.putExtra("FormatData", formatdata);
-                startActivity(intent_Toukou_past);
-            }
-        });
+        //Button send_past = (Button) findViewById(R.id.button_past);
+        //send_past.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
+        //    @Override
+        //    public void onClick(View view) {
+        //        Intent intent_Toukou_past = new Intent(RadioButtons.this, Toukou_past.class);  //RadioButtonsからToukou_pastに移動
+        //        intent_Toukou_past.putExtra("FormatData", formatdata);
+        //        startActivity(intent_Toukou_past);
+        //    }
+        //});
     }
 
     @Override

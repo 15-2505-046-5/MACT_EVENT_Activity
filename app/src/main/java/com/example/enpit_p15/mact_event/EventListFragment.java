@@ -85,84 +85,164 @@ public class EventListFragment extends Fragment {
         //test
         //検索条件　.equalTo("id:schedule","**Text")
 
-        if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)) {
+        if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)) {
             //検索ボックスと日付、キーワード、ジャンルが空
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)){
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //検索ボックスのみ入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord.length()==0)&&(CalText.length()!=0)&&(Keytxt==null|| Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)){
+        }else if((KeyWord.length()==0)&&(CalText.length()!=0)&&(Keytxt==null|| Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //日付のみ入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("date", CalText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText.length()!=0)&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)){
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText.length()!=0)&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //検索ボックスと日付が入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).equalTo("date", CalText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)){
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //キーワードのみ入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)){
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //検索ボックスとキーワードがはいっている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).contains("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)){
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //日付とキーワードがはいっている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).equalTo("date",CalText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)){
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //検索ボックスと日付、キーワードがはいっている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).equalTo("date",CalText).contains("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)) {
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)) {
             //ジャンルが入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)){
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //検索ボックスとジャンル入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord.length()==0)&&(CalText.length()!=0)&&(Keytxt==null|| Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)){
+        }else if((KeyWord.length()==0)&&(CalText.length()!=0)&&(Keytxt==null|| Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //日付とジャンル入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("date", CalText).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText.length()!=0)&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)){
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText.length()!=0)&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //検索ボックスと日付とジャンルが入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).equalTo("date", CalText).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)){
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //キーワードとジャンル入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)){
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //検索ボックスとキーワードとジャンルはいっている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).contains("title",KeyWord).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)){
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //日付とキーワードジャンルはいっている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).equalTo("date",CalText).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)){
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
             //検索ボックスと日付、キーワードとジャンルがはいっている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).equalTo("date",CalText).equalTo("category",CateText).contains("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText!=null||PrefectureText.length()!=0)) {
+            //検索ボックスと日付、キーワード、ジャンルが空 都道府県が入ってる
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //検索ボックス 都道府県が入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).equalTo("prefecture",PrefectureText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord.length()==0)&&(CalText.length()!=0)&&(Keytxt==null|| Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //日付　都道府県が入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).equalTo("date", CalText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText.length()!=0)&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //検索ボックスと日付 都道府県が入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("title", KeyWord).equalTo("date", CalText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //キーワード 都道府県入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("bodyText", Keytxt).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //検索ボックスとキーワード 都道府県がはいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("bodyText", Keytxt).contains("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //日付とキーワード 都道府県がはいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("bodyText", Keytxt).equalTo("date",CalText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //検索ボックスと日付、キーワード都道府県がはいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("bodyText", Keytxt).equalTo("date",CalText).contains("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText!=null||PrefectureText.length()!=0)) {
+            //ジャンル 都道府県が入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //検索ボックスとジャンル 都道府県入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord.length()==0)&&(CalText.length()!=0)&&(Keytxt==null|| Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //日付とジャンル入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).equalTo("date", CalText).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText.length()!=0)&&(Keytxt==null||Keytxt.length()==0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //検索ボックスと日付とジャンル 都道府県が入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("title", KeyWord).equalTo("date", CalText).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //キーワードとジャンル　都道府県入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("bodyText", Keytxt).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //検索ボックスとキーワードとジャンル 都道府県はいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("bodyText", Keytxt).contains("title",KeyWord).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //日付とキーワードジャンル 都道府県はいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("bodyText", Keytxt).equalTo("date",CalText).equalTo("category",CateText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)&&(CateText!=null||CateText.length()!=0)&&(PrefectureText!=null||PrefectureText.length()!=0)){
+            //検索ボックスと日付、キーワードとジャンル 都道府県がはいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("prefecture",PrefectureText).contains("bodyText", Keytxt).equalTo("date",CalText).equalTo("category",CateText).contains("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
         }

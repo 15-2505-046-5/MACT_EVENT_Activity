@@ -14,15 +14,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -50,6 +47,7 @@ public class InputEventFragment extends Fragment{
     private EditText mDate;
     private ImageView mEventImage;
     private String str_ymd;
+    private  String year;
 
     public static InputEventFragment newInstance(long eventId) {  //フラグメントのインスタンスを作成する
         /*引数として受け取った日記のIDをフラグメントに保存する*/
@@ -86,7 +84,8 @@ public class InputEventFragment extends Fragment{
         mEventImage = (ImageView) v.findViewById(R.id.format_photo);
 
         //スピナーの実装
-        Button btn = (Button) v.findViewById(R.id.Hanei); //spinnerを反映させるボタンの準備
+        //Button btn = (Button) v.findViewById(R.id.Hanei); //spinnerを反映させるボタンの準備
+
         String[] ctg = getResources().getStringArray(R.array.category_list); //スピナーのリスト（ジャンル）
         String[] prf = getResources().getStringArray(R.array.prefecture_list);//スピナーのリスト（都道府県）
         String[] cost = getResources().getStringArray(R.array.cost_list);//スピナーのリスト(予算)
@@ -101,7 +100,14 @@ public class InputEventFragment extends Fragment{
         Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
         Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
 
-        ArrayAdapter<String> adapter_c = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, ctg);//スピナー展開時の表示方法の指定
+        String selected_y = (String) spinner_y.getSelectedItem();
+        String selected_m = (String) spinner_m.getSelectedItem();
+        String selected_d = (String) spinner_d.getSelectedItem();
+
+        str_ymd = selected_y + selected_m + selected_d;
+
+
+        /*<String> adapter_c = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, ctg);//スピナー展開時の表示方法の指定
         ArrayAdapter<String> adapter_p = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, prf);
         ArrayAdapter<String> adapter_ct = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, cost);
         ArrayAdapter<String> adapter_y = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, year_s);
@@ -121,42 +127,24 @@ public class InputEventFragment extends Fragment{
         spinner_ct.setAdapter(adapter_ct);//イベントリスナーの登録:予算
         spinner_y.setAdapter(adapter_y);//イベントリスナーの登録:年
         spinner_m.setAdapter(adapter_m);//イベントリスナーの登録:月
-        spinner_d.setAdapter(adapter_d);//イベントリスナーの登録:日
+        spinner_d.setAdapter(adapter_d);//イベントリスナーの登録:日*/
 
 
-        String str_c = spinner_c.getSelectedItem().toString();
+     /*   String str_c = spinner_c.getSelectedItem().toString();
         String str_p = spinner_p.getSelectedItem().toString();
         String str_ct = spinner_ct.getSelectedItem().toString();
         String str_y = spinner_y.getSelectedItem().toString();
         String str_m = spinner_m.getSelectedItem().toString();
         String str_d = spinner_d.getSelectedItem().toString();
 
-        str_ymd = str_y + str_m + str_d;
+        str_ymd = str_y + str_m + str_d;    */
 
 
-        /*Button mButton = v.findViewById(R.id.Hanei);
+        Button mButton = v.findViewById(R.id.Hanei);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
-                Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
-                Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
-                Spinner spinner_y = (Spinner) v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
-                Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
-                Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
-
-
-                String str_c = spinner_c.getSelectedItem().toString();
-                String str_p = spinner_p.getSelectedItem().toString();
-                String str_ct = spinner_ct.getSelectedItem().toString();
-                String str_y = spinner_y.getSelectedItem().toString();
-                String str_m = spinner_m.getSelectedItem().toString();
-                String str_d = spinner_d.getSelectedItem().toString();
-
-                final String str_ymd = str_y + str_m + str_d;
-
                mRealm.executeTransactionAsync(new Realm.Transaction() {
                         @Override
                         public void execute(Realm realm) {
@@ -165,13 +153,19 @@ public class InputEventFragment extends Fragment{
                         }
                 });
             }
-        }); */
+        });
 
-        spinner_c.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       /* spinner_y.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onCreate開始");
-                String selectedItemString = (String) parent.getItemAtPosition(position);
+                year = (String) parent.getItemAtPosition(position);
+                mRealm.executeTransactionAsync(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
+                        event.year = year.toString();  //yearの中身をデータベースに格納
+                    }
+                });
 
             }
 
@@ -179,7 +173,8 @@ public class InputEventFragment extends Fragment{
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
+
         mEventImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -226,7 +221,6 @@ public class InputEventFragment extends Fragment{
                     public void execute(Realm realm) {
                         Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
                         event.bodyText = s.toString();  //bodyTextの中身を格納
-                        event.date = str_ymd.toString();
                     }
                 });
             }

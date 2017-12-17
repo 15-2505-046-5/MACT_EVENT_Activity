@@ -82,7 +82,6 @@ public class InputEventFragment extends Fragment{
         mEventImage = (ImageView) v.findViewById(R.id.format_photo);
 
         //スピナーの実装
-        //Button btn = (Button) v.findViewById(R.id.Hanei); //spinnerを反映させるボタンの準備
 
         String[] ctg = getResources().getStringArray(R.array.category_list); //スピナーのリスト（ジャンル）
         String[] prf = getResources().getStringArray(R.array.prefecture_list);//スピナーのリスト（都道府県）
@@ -98,47 +97,9 @@ public class InputEventFragment extends Fragment{
         final Spinner spinner_m = v.findViewById(R.id.monthSpinner);//(月)
         final Spinner spinner_d = v.findViewById(R.id.daySpinner);//(日)
 
-        //String selected_y = spinner_y.getSelectedItem().toString();
-        //String selected_m = spinner_m.getSelectedItem().toString();
-        //String selected_d = spinner_d.getSelectedItem().toString();
-
-        //str_ymd = selected_y +"/" +selected_m+"/" + selected_d;
 
 
-        /*<String> adapter_c = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, ctg);//スピナー展開時の表示方法の指定
-        ArrayAdapter<String> adapter_p = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, prf);
-        ArrayAdapter<String> adapter_ct = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, cost);
-        ArrayAdapter<String> adapter_y = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, year_s);
-        ArrayAdapter<String> adapter_m = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, month_s);
-        ArrayAdapter<String> adapter_d = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, day_s);
-
-        adapter_c.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //アダプターをスピナーに設定:ジャンル
-        adapter_p.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //都道府県
-        adapter_ct.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //予算
-        adapter_y.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //アダプターをスピナーに設定:年
-        adapter_m.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //月
-        adapter_d.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line); //日
-
-
-        spinner_c.setAdapter(adapter_c);//イベントリスナーの登録:ジャンル
-        spinner_p.setAdapter(adapter_p);//イベントリスナーの登録:都道府県
-        spinner_ct.setAdapter(adapter_ct);//イベントリスナーの登録:予算
-        spinner_y.setAdapter(adapter_y);//イベントリスナーの登録:年
-        spinner_m.setAdapter(adapter_m);//イベントリスナーの登録:月
-        spinner_d.setAdapter(adapter_d);//イベントリスナーの登録:日*/
-
-
-     /*   String str_c = spinner_c.getSelectedItem().toString();
-        String str_p = spinner_p.getSelectedItem().toString();
-        String str_ct = spinner_ct.getSelectedItem().toString();
-        String str_y = spinner_y.getSelectedItem().toString();
-        String str_m = spinner_m.getSelectedItem().toString();
-        String str_d = spinner_d.getSelectedItem().toString();
-
-        str_ymd = str_y + str_m + str_d;    */
-
-
-        Button mButton = v.findViewById(R.id.Hanei);
+        Button mButton = v.findViewById(R.id.Hanei);    //ボタン実装
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +117,7 @@ public class InputEventFragment extends Fragment{
                             String selected_d = spinner_d.getSelectedItem().toString();
 
                             str_ymd = selected_y +"/" +selected_m+"/" + selected_d;
-                            event.date = str_ymd.toString();  //年月日の中身をデータベースに格納
+                            event.date = str_ymd.toString();  //スピナーの中身をデータベースに格納
                             event.category = selected_c;
                             event.prefecture = selected_p;
                             event.cost = selected_ct;
@@ -217,27 +178,6 @@ public class InputEventFragment extends Fragment{
                 });
             }
         });
-
-        //mDate.addTextChangedListener(new TextWatcher() {  //入力内容をデータベースに格納する
-        //    @Override
-        //    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        //    }
-
-         //   @Override
-         //   public void onTextChanged(CharSequence s, int start, int before, int count) {
-         //   }
-
-         //   @Override
-         //   public void afterTextChanged(final Editable s) {
-         //       mRealm.executeTransactionAsync(new Realm.Transaction() {
-         //           @Override
-         //           public void execute(Realm realm) {
-         //              Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
-         //               event.date = s.toString();  //dateのデータベースに格納
-         //           }
-         //      });
-         //   }
-        //});
 
 
 

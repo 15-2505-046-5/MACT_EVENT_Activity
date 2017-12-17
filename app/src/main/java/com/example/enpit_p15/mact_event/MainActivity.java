@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity
 
         Intent intent = getIntent();
         //変数の受け取り　searchActivity
-        //CostTxt = intent.getStringExtra("COST");
-        //CateTxt = intent.getStringExtra("CATE");
-        //PrefTxt = intent.getStringExtra("PREF");
+        CostTxt = intent.getStringExtra("COST");
+        CateTxt = intent.getStringExtra("CATE");
+        PrefTxt = intent.getStringExtra("PREF");
         KeyTxt = intent.getStringExtra("KEY");
         DateTxt = intent.getStringExtra("DATE");
         ContTxt = intent.getStringExtra("CONT");
@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity
         if(fragment == null){
             //Fragmentへ変数の受け渡し
             Bundle args = new Bundle();
-            //args.putString("CATE",CateTxt);
-            //args.putString("PREF",PrefTxt);
-            //args.putString("COST",CostTxt);
+            args.putString("CATE",CateTxt);
+            args.putString("PREF",PrefTxt);
+            args.putString("COST",CostTxt);
             args.putString("KEY",KeyTxt);
             args.putString("DATE",DateTxt);
             args.putString("CONT",ContTxt);

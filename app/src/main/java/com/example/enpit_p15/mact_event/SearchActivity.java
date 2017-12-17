@@ -98,7 +98,7 @@ public class SearchActivity extends AppCompatActivity implements
                 new MenuItem.OnMenuItemClickListener(){
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem){
-                        Intent intent_Toukou = new Intent(SearchActivity.this, Toukou.class);  //SearchActivitytからToukouに移動
+                        Intent intent_Toukou = new Intent(SearchActivity.this, RadioButtons.class);  //SearchActivitytからToukouに移動
                         startActivity(intent_Toukou);
                         return true;
                     }

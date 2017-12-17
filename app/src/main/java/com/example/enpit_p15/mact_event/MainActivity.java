@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity
     private String CateTxt;
     private String PrefTxt;
     private String KeyTxt;
+    private String ContTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         //PrefTxt = intent.getStringExtra("PREF");
         KeyTxt = intent.getStringExtra("KEY");
         DateTxt = intent.getStringExtra("DATE");
+        ContTxt = intent.getStringExtra("CONT");
 
         //createTestDate();
         showEventList();  //EventListFragmentを表示する処理
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity
             //args.putString("COST",CostTxt);
             args.putString("KEY",KeyTxt);
             args.putString("DATE",DateTxt);
+            args.putString("CONT",ContTxt);
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             EventListFragment fragment1 = new EventListFragment();

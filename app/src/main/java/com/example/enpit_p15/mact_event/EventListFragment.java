@@ -28,6 +28,7 @@ public class EventListFragment extends Fragment {
     private String CostText;
     private String PrefectureText;
     private String KeyWord = "def";
+    private String Keytxt;
 
 
 
@@ -65,6 +66,7 @@ public class EventListFragment extends Fragment {
         //CostText = getArguments().getString("COST");
         KeyWord = getArguments().getString("KEY");
         CalText= getArguments().getString("DATE");
+        Keytxt = getArguments().getString("CONT");
 
         //temp = String.valueOf("きららファンタジア");     //titleの検索条件　完全一致
 
@@ -82,24 +84,44 @@ public class EventListFragment extends Fragment {
 
         //test
         //検索条件　.equalTo("id:schedule","**Text")
-        if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")) {
-            //検索ボックスと日付が両方とも空
+        if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)) {
+            //検索ボックスと日付、キーワードが空
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")){
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)){
             //検索ボックスのみ入っている
-            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("title", KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord.length()==0)&&(CalText.length()!=0)){
+        }else if((KeyWord.length()==0)&&(CalText.length()!=0)&&(Keytxt==null|| Keytxt.length()==0)){
             //日付のみ入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("date", CalText).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText.length()!=0)){
-            //検索ボックスと日付が両方とも入っている
-            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).equalTo("title", KeyWord).equalTo("date", CalText).findAll();  //データベースからリストを取得 検索条件の設定
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText.length()!=0)&&(Keytxt==null||Keytxt.length()==0)){
+            //検索ボックスと日付が入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).equalTo("date", CalText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)){
+            //キーワードのみ入っている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)){
+            //検索ボックスとキーワードがはいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).contains("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)){
+            //日付とキーワードがはいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).equalTo("date",CalText).findAll();  //データベースからリストを取得 検索条件の設定
+            EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
+            recyclerView.setAdapter(adapter);  //作成したアダプターの設定
+        }else if((KeyWord==null||KeyWord.length()==0)&&(CalText!=null||CalText.length()!=0||CalText.length()!=6||CalText!="0/1/0")&&(Keytxt!=null||Keytxt.length()!=0)){
+            //検索ボックスと日付、キーワードがはいっている
+            RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("bodyText", Keytxt).equalTo("date",CalText).contains("title",KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
         }

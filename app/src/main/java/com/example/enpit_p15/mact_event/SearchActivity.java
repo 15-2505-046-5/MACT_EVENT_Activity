@@ -24,6 +24,7 @@ public class SearchActivity extends AppCompatActivity implements
     public TextView textViewP; //都道府県
     public TextView textViewC; //ジャンル
     public EditText textS; //検索ボックス
+    public EditText textK;//キーワード
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class SearchActivity extends AppCompatActivity implements
         setTitle("検索");
         textView = (TextView) findViewById(R.id.DateText);
         textS = (EditText) findViewById(R.id.SearchText);
+        textK = (EditText)findViewById(R.id.KeySearch);
 
         Button button = (Button) findViewById(R.id.SearchButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +46,7 @@ public class SearchActivity extends AppCompatActivity implements
                     //intent.putExtra("COST", (CharSequence) textViewM);
                     intent.putExtra("KEY", textS.getText().toString());
                     intent.putExtra("DATE",textView.getText().toString());
+                    intent.putExtra("CONT",textK.getText().toString());
                     startActivity(intent);
                 }
 

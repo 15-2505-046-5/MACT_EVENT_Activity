@@ -9,6 +9,6 @@ public class Schedule extends RealmObject {
     public String title;
     public String bodyText;
     public String date;
-     public byte[] image;
+    public byte[] image;
 
 }

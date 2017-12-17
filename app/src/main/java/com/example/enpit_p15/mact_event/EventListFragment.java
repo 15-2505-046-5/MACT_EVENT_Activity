@@ -84,13 +84,12 @@ public class EventListFragment extends Fragment {
 
         //test
         //検索条件　.equalTo("id:schedule","**Text")
-
-        if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)) {
+        if((KeyWord==null||KeyWord.length()==0)&&(CalText==null||CalText.length()==0||CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)&&(CostText==null||CostText.length()==0||CostText.length()==8)) {
             //検索ボックスと日付、キーワード、ジャンルが空
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
-        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)){
+        }else if((KeyWord!=null||KeyWord.length()!=0)&&(CalText==null||CalText.length()==0|| CalText.length()==6||CalText=="0/1/0")&&(Keytxt==null||Keytxt.length()==0)&&(CateText==null||CateText.length()==0||CateText.length()==8)&&(PrefectureText==null||PrefectureText.length()==0||PrefectureText.length()==8)&&(CostText==null||CostText.length()==0||CostText.length()==8)){
             //検索ボックスのみ入っている
             RealmResults<Schedule> diaries = mRealm.where(Schedule.class).contains("title", KeyWord).findAll();  //データベースからリストを取得 検索条件の設定
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
@@ -246,6 +245,9 @@ public class EventListFragment extends Fragment {
             EventRealmAdapter adapter = new EventRealmAdapter(getActivity(), diaries, true);  //アダプターの生成、引数にはデータベースから取得したものを使う
             recyclerView.setAdapter(adapter);  //作成したアダプターの設定
         }
+
+
+
 
 
         //ここでデータが更新されるとアダプターも更新されるため、最新の状態が表示される

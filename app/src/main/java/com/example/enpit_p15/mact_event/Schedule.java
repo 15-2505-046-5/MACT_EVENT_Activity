@@ -13,6 +13,7 @@ public class Schedule extends RealmObject {
     public String cost;
     public String category;
     public String prefecture;
+    public int formatID;
     public boolean flag_spinner_ymad = false;
     public boolean flag_spinner_c = false;
     public boolean flag_spinner_p = false;

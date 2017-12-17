@@ -52,6 +52,7 @@ public class InputEventFragment extends Fragment{
     private ImageView mEventImage;
     private String str_ymd;
     private String str_ymd_first;
+    private int formatID;
     //private Context mContext;
 
     public static InputEventFragment newInstance(long eventId) {  //フラグメントのインスタンスを作成する
@@ -68,6 +69,7 @@ public class InputEventFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //this.mContext = getActivity();
+        formatID = getArguments().getInt("FormatID");
 
         if (getArguments() != null) {  //上で保存した日記のIDを変数に格納
             mEventId = getArguments().getLong(EVENT_ID);
@@ -128,15 +130,20 @@ public class InputEventFragment extends Fragment{
 
                             str_ymd = selected_y +"/" +selected_m+"/" + selected_d;
                             event.date = str_ymd.toString();  //スピナーの中身をデータベースに格納
+                            event.category = selected_c;
+                            event.prefecture = selected_p;
+                            event.cost = selected_ct;
+                            event.formatID = formatID;
+
                             if(str_ymd==null||str_ymd.length()==0 /*.equals(str_ymd_first)*/){
                                 event.flag_spinner_ymad = true;
                                 //Toast.makeText(getActivity(), "日付を入力してください", Toast.LENGTH_SHORT).show();
                             }
-                            event.category = selected_c;
+
                             if(selected_c.equals("ジャンルから選ぶ")){  flag_spinner_c = true; }
-                            event.prefecture = selected_p;
+
                             if(selected_p.equals("都道府県から選ぶ")){  flag_spinner_p = true; }
-                            event.cost = selected_ct;
+
                             if(selected_ct.equals("費用から選ぶ")){  flag_spinner_ct = true; }
                             //Toast.makeText(getActivity(), "日付を入力してください", Toast.LENGTH_SHORT).show();
                         }

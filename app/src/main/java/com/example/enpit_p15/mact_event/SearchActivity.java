@@ -32,6 +32,9 @@ public class SearchActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_search2);
         setTitle("検索");
         textView = (TextView) findViewById(R.id.DateText);
+        textViewC = (TextView)findViewById(R.id.result);
+        textViewP = (TextView)findViewById(R.id.result2);
+        textViewM = (TextView)findViewById(R.id.result3);
         textS = (EditText) findViewById(R.id.SearchText);
         textK = (EditText)findViewById(R.id.KeySearch);
 
@@ -41,9 +44,9 @@ public class SearchActivity extends AppCompatActivity implements
                 public void onClick(View v) {
                     //変数の受け渡し
                     Intent intent = new Intent(SearchActivity.this, MainActivity.class);
-                    //intent.putExtra("PREF", (CharSequence) textViewP);
-                    //intent.putExtra("CATE", (CharSequence) textViewC);
-                    //intent.putExtra("COST", (CharSequence) textViewM);
+                    intent.putExtra("PREF", textViewP.getText().toString());
+                    intent.putExtra("CATE", textViewC.getText().toString());
+                    intent.putExtra("COST", textViewM.getText().toString());
                     intent.putExtra("KEY", textS.getText().toString());
                     intent.putExtra("DATE",textView.getText().toString());
                     intent.putExtra("CONT",textK.getText().toString());
@@ -61,16 +64,16 @@ public class SearchActivity extends AppCompatActivity implements
         Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
         //EditText txt =(EditText)findViewById(R.id.SearchText);
         //TextView txt = (TextView)findViewById(R.id.DateText);
-        textViewC = (TextView)findViewById(R.id.result);
+
         String str = spinner.getSelectedItem().toString();
         //String str = txt.toString();
         textViewC.setText(str);
         Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);//スピナーの処理を反映させるための処理
-        textViewP = (TextView)findViewById(R.id.result2);
+
         String str2 = spinner2.getSelectedItem().toString();
         textViewP.setText(str2);
         Spinner spinner3 = (Spinner)findViewById(R.id.spinner);
-        textViewM = (TextView)findViewById(R.id.result3);
+
         String str3 = spinner3.getSelectedItem().toString();
         textViewM.setText(str3);
 

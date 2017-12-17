@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/format2_changed"
+    android:background="@drawable/format5_changed2"
     android:fitsSystemWindows="true"
-    tools:context="com.example.enpit_p15.mact_event.ShowEvent_4">
+    tools:context="com.example.enpit_p15.mact_event.ShowEvent_3">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/format2_changed"
+        android:background="@drawable/format5_changed2"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
@@ -44,49 +44,73 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/format2_changed">
+            android:background="@drawable/format5_changed2">
 
             <TextView
-                android:id="@+id/title_show4"
-                android:layout_width="300dp"
-                android:layout_height="250dp"
+                android:id="@+id/textView3"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="32dp"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="16dp"
+                android:text="詳細："
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_nichiji" />
+
+            <TextView
+                android:id="@+id/title_show3"
+                android:layout_width="700dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="820dp"
                 android:maxLines="2"
                 android:text="TextView"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="?android:attr/colorEdgeEffect"
-                android:textSize="60sp"
+                android:textColor="?attr/editTextColor"
+                android:textSize="50sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/date_show4"
-                android:layout_width="300dp"
-                android:layout_height="75dp"
+                android:id="@+id/textView_nichiji"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="32dp"
-                android:layout_marginTop="32dp"
-                android:text="TextView"
-                android:textAlignment="textEnd"
-                android:textColor="@android:color/white"
-                android:textSize="30sp"
+                android:layout_marginTop="16dp"
+                android:text="日時："
+                android:textSize="25sp"
+                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_show4" />
+                app:layout_constraintTop_toBottomOf="@+id/title_show3" />
 
             <TextView
-                android:id="@+id/body_show4"
+                android:id="@+id/date_show3"
                 android:layout_width="300dp"
-                android:layout_height="600dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="32dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                android:textAlignment="textStart"
+                android:textColor="?attr/editTextColor"
+                android:textSize="25sp"
+                app:layout_constraintLeft_toRightOf="@+id/textView_nichiji"
+                app:layout_constraintTop_toBottomOf="@+id/title_show3" />
+
+            <TextView
+                android:id="@+id/body_show3"
+                android:layout_width="500dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@android:color/white"
-                android:textSize="30sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/date_show4" />
+                android:textColor="?attr/editTextColor"
+                android:textSize="25sp"
+                app:layout_constraintLeft_toRightOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/date_show3" />
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>

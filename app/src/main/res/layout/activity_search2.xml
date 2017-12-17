@@ -112,7 +112,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:text="ジャンル"
-        android:textSize="8sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deButton"
         tools:layout_editor_absoluteX="8dp" />

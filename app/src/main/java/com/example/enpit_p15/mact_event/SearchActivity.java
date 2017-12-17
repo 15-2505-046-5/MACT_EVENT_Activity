@@ -19,7 +19,7 @@ import java.util.Locale;
 public class SearchActivity extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener {
 
-    private TextView textView;
+    public TextView textView; //日付
     public TextView textViewM; //費用
     public TextView textViewP; //都道府県
     public TextView textViewC; //ジャンル
@@ -43,6 +43,7 @@ public class SearchActivity extends AppCompatActivity implements
                     //intent.putExtra("CATE", (CharSequence) textViewC);
                     //intent.putExtra("COST", (CharSequence) textViewM);
                     intent.putExtra("KEY", textS.getText().toString());
+                    intent.putExtra("DATE",textView.getText().toString());
                     startActivity(intent);
                 }
 
@@ -55,7 +56,8 @@ public class SearchActivity extends AppCompatActivity implements
 
     public void onClick_Button(View view){
         //Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
-        EditText txt =(EditText)findViewById(R.id.SearchText);
+        //EditText txt =(EditText)findViewById(R.id.SearchText);
+        TextView txt = (TextView)findViewById(R.id.DateText);
         textViewC = (TextView)findViewById(R.id.result);
         //String str = spinner.getSelectedItem().toString();
         String str = txt.toString();

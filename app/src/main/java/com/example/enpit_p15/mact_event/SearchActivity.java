@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -59,7 +60,7 @@ public class SearchActivity extends AppCompatActivity implements
         //String str = spinner.getSelectedItem().toString();
         String str = txt.toString();
         textViewC.setText(str);
-        //Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);//スピナーの処理を反映させるための処理
+        Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);//スピナーの処理を反映させるための処理
         //textViewP = (TextView)findViewById(R.id.result2);
         //String str2 = spinner2.getSelectedItem().toString();
         //textViewP.setText(str2);

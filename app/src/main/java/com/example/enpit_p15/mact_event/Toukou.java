@@ -61,7 +61,7 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         // ShowInputEvent(); 一時的に逃がす
 
 
-        //これより上の者は不要であるが、念のために残す。解説は上のものを参照
+        //これより上のものは不要であるが、念のために残す。解説は上のものを参照
         mRealm.beginTransaction();
         Number maxId = mRealm.where(Schedule.class).max("id");
         long nextId = 0;

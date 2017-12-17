@@ -25,7 +25,7 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
 
     private EventListFragment.OnFragmentInteractionListener mListener;
     private Realm mRealm;
-
+    private int form;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -36,8 +36,8 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
 
         //activity間のデータの受け取り部分、テスト用
         Intent intent = getIntent();
-        int formatID = intent.getIntExtra("FormatData", 0);
-        Toast.makeText(Toukou.this,String.valueOf(formatID), Toast.LENGTH_SHORT).show();
+        form = intent.getIntExtra("FormatData", 0);
+        Toast.makeText(Toukou.this,String.valueOf(form), Toast.LENGTH_SHORT).show();
 
 
         Button save_button = (Button) findViewById(R.id.save_button);
@@ -79,13 +79,13 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
 
 
         Bundle args = new Bundle();
-        args.putInt("FormatID",formatID);
+        args.putInt("FormatID",form);
         //inputEventFragment.setArguments(args);
 
         FragmentTransaction transaction = manager.beginTransaction();
 
-
-        transaction.replace(R.id.content, inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
+        //change replace to add
+        transaction.add(R.id.content, inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
         transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
         transaction.commit();
 

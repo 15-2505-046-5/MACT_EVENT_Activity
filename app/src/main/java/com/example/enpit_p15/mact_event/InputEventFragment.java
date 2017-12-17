@@ -38,6 +38,7 @@ public class InputEventFragment extends Fragment{
     private static final int REQUEST_CODE = 1;
     private static final int PERMISSION_REQUEST_CODE = 2;
     private static final String TAG = InputEventFragment.class.getSimpleName();
+    private static int formatID;
 
     private boolean flag_spinner_ymad = false;
     private boolean flag_spinner_c = false;
@@ -52,7 +53,6 @@ public class InputEventFragment extends Fragment{
     private ImageView mEventImage;
     private String str_ymd;
     private String str_ymd_first;
-    private int formatID;
     //private Context mContext;
 
     public static InputEventFragment newInstance(long eventId) {  //フラグメントのインスタンスを作成する
@@ -60,6 +60,7 @@ public class InputEventFragment extends Fragment{
         InputEventFragment fragment = new InputEventFragment();
         Bundle args = new Bundle();
         args.putLong(EVENT_ID, eventId);
+        args.putInt("FormatID",formatID);
         fragment.setArguments(args);
         return fragment;
         /*ここまで*/
@@ -133,7 +134,7 @@ public class InputEventFragment extends Fragment{
                             event.category = selected_c;
                             event.prefecture = selected_p;
                             event.cost = selected_ct;
-                            //event.formatID = formatID;
+                            event.formatID = formatID;
 
                             if(str_ymd==null||str_ymd.length()==0 /*.equals(str_ymd_first)*/){
                                 event.flag_spinner_ymad = true;

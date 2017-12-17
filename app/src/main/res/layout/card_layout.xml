@@ -82,6 +82,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
                 android:text="イベントID"
+                android:textAlignment="center"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/format_photo" />
 
@@ -90,41 +91,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:text="ジャンル"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/format_photo"
                 app:layout_constraintTop_toBottomOf="@+id/body"
-                app:layout_constraintVertical_bias="0.508" />
+                app:layout_constraintVertical_bias="0.511"
+                app:layout_constraintLeft_toRightOf="@+id/format_photo"
+                android:layout_marginLeft="16dp" />
 
             <TextView
                 android:id="@+id/prefecture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:text="都道府県"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/category"
                 app:layout_constraintTop_toBottomOf="@+id/body"
-                app:layout_constraintVertical_bias="0.507" />
+                app:layout_constraintVertical_bias="0.534"
+                app:layout_constraintLeft_toRightOf="@+id/category"
+                android:layout_marginLeft="16dp" />
 
             <TextView
                 android:id="@+id/cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 android:text="予算"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/prefecture"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/body"
-                app:layout_constraintVertical_bias="0.508" />
+                app:layout_constraintVertical_bias="0.511"
+                app:layout_constraintLeft_toRightOf="@+id/prefecture"
+                android:layout_marginLeft="16dp" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

@@ -96,6 +96,7 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
         holder.category.setText(event.category);
         holder.prefecture.setText(event.prefecture);
         holder.cost.setText(event.cost);
+        holder.eventId.setText("No."+ String.valueOf(event.id + 1));
         /*画像のやつ*/
         if (event.image != null && event.image.length != 0){
             Bitmap bmp = MyUtils.getImageFromByte(event.image);

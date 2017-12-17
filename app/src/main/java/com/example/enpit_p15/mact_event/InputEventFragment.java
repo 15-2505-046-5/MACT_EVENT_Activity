@@ -165,25 +165,7 @@ public class InputEventFragment extends Fragment{
             }
         });
 
-       /* spinner_y.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                year = (String) parent.getItemAtPosition(position);
-                mRealm.executeTransactionAsync(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
-                        event.year = year.toString();  //yearの中身をデータベースに格納
-                    }
-                });
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
 
         mEventImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,44 +245,6 @@ public class InputEventFragment extends Fragment{
 
     }
 
-   // @Override
-   // public void onActivityCreated(Bundle savedInstanceState) {
-   //     super.onActivityCreated(savedInstanceState);
-
-
-    //    Button mButton = (Button) getView().findViewById(R.id.Hanei);
-
-    //    mButton.setOnClickListener(new View.OnClickListener() {
-    //        @Override
-    //        public void onClick(View v) {
-
-    //            Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
-    //            Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
-    //            Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
-    //            Spinner spinner_y = (Spinner) v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
-    //            Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
-    //            Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
-
-
-     //           String str_c = spinner_c.getSelectedItem().toString();
-     //           String str_p = spinner_p.getSelectedItem().toString();
-     //           String str_ct = spinner_ct.getSelectedItem().toString();
-     //           String str_y = spinner_y.getSelectedItem().toString();
-     //           String str_m = spinner_m.getSelectedItem().toString();
-     //           String str_d = spinner_d.getSelectedItem().toString();
-
-     //           final String str_ymd = str_y + str_m + str_d;
-
-     //           mRealm.executeTransactionAsync(new Realm.Transaction() {
-     //               @Override
-     //               public void execute(Realm realm) {
-     //                   Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
-     //                   event.date = str_ymd.toString();  //dateのデータベースに格納
-     //               }
-     //           });
-      //      }
-     //   });
-    //}
 
 
 
@@ -418,32 +362,5 @@ public class InputEventFragment extends Fragment{
         return false;
     }
 
-  //  @Override
-  //  public void onClick(View v) {
-  //
-    //    Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
-    //    Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
-    //    Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
-    //    Spinner spinner_y = (Spinner) v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
-    //    Spinner spinner_m = (Spinner)v.findViewById(R.id.monthSpinner);//(月)
-    //    Spinner spinner_d = (Spinner)v.findViewById(R.id.daySpinner);//(日)
 
-
-     //   String str_c = spinner_c.getSelectedItem().toString();
-     //   String str_p = spinner_p.getSelectedItem().toString();
-     //   String str_ct = spinner_ct.getSelectedItem().toString();
-     //   String str_y = spinner_y.getSelectedItem().toString();
-     //   String str_m = spinner_m.getSelectedItem().toString();
-     //   String str_d = spinner_d.getSelectedItem().toString();
-
-     //   final String str_ymd = str_y + str_m + str_d;
-
-     //   mRealm.executeTransactionAsync(new Realm.Transaction() {
-     //                  @Override
-     //                  public void execute(Realm realm) {
-     //                     Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
-     //                      event.date = str_ymd.toString();  //dateのデータベースに格納
-     //                  }
-     //             });
-    //}
 }

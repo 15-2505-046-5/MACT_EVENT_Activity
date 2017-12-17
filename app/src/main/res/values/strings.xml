@@ -11,7 +11,9 @@
     <string name="r_1">デフォルト</string>
     <string name="r_2">夏祭り</string>
     <string name="r_3">誕生会</string>
-    <string name="r_4">4</string>>
+    <string name="r_4">4</string>
+    <string name="save_fragment">保存しました</string>
+    <string name="ymd_error">日付を選択してください</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -104,4 +106,7 @@
     <string name="action_settings">Settings</string>
     <string name="arrays" />
     <string name="title_activity_show_event_2">ShowEvent_2</string>
+    <string name="title_activity_show_event4">ShowEvent4</string>
+    <string name="title_activity_show_event_4">ShowEvent_4</string>
+    <string name="title_activity_show_event_3">ShowEvent_3</string>
 </resources>

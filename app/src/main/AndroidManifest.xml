@@ -39,7 +39,19 @@
         <activity
             android:name=".ShowEvent_2"
             android:label="@string/title_activity_show_event_2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ShowEvent_3"
+            android:label="@string/title_activity_show_event_3"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ShowEvent4"
+            android:label="@string/title_activity_show_event4"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ShowEvent_4"
+            android:label="@string/title_activity_show_event_4"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

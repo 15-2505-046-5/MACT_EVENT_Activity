@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name = "year_list">
-        <item></item>
+        <item>年</item>
         <item>2017</item>
         <item>2018</item>
         <item>2019</item>
@@ -13,7 +13,7 @@
         <item>2025</item>
     </string-array>
     <string-array name = "month_list">
-        <item></item>
+        <item>月</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -28,7 +28,7 @@
         <item>12</item>
     </string-array>
     <string-array name = "day_list">
-        <item></item>
+        <item>日</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

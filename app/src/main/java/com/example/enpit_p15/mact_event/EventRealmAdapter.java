@@ -42,6 +42,9 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
             bodyText = (TextView)itemView.findViewById(R.id.body);
             date = (TextView)itemView.findViewById(R.id.date);
             photo = (ImageView)itemView.findViewById(R.id.format_photo);
+            category = (TextView)itemView.findViewById(R.id.category);
+            prefecture = (TextView)itemView.findViewById(R.id.prefecture);
+            cost = (TextView)itemView.findViewById(R.id.cost);
             eventId = (TextView)itemView.findViewById(R.id.EventId);//ID表示用　試験段階
 
             }
@@ -90,6 +93,9 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
         holder.title.setText(event.title);  //取得したデータをセットする
         holder.bodyText.setText(event.bodyText);
         holder.date.setText(event.date);
+        holder.category.setText(event.category);
+        holder.prefecture.setText(event.prefecture);
+        holder.cost.setText(event.cost);
         /*画像のやつ*/
         if (event.image != null && event.image.length != 0){
             Bitmap bmp = MyUtils.getImageFromByte(event.image);

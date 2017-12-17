@@ -76,36 +76,36 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
                 long eventId = event.id;
                 int formatId = event.formatID;
 
-        switch (formatId){
-            case 1:
-                /*ShowEventActivityを開く->IDを取得してShowEventActivityに渡す*/
+        //switch (formatId){
+            //case 1:
+                //ShowEventActivityを開く->IDを取得してShowEventActivityに渡す
                 Intent intent = new Intent(context,ShowEvent_2.class);//ShowEvent_2の追加の際にShowEvevnt_2に変更
                 intent.putExtra(ShowEvent_2.EVENT_ID,eventId);
                 context.startActivity(intent);//ShowEvent_2の起動
-                /*ここまで*/
-                break;
-            case 2:
-                /*ShowEventActivityを開く->IDを取得してShowEventActivityに渡す*/
+                //ここまで
+                //break;
+            /*case 2:
+                //ShowEventActivityを開く->IDを取得してShowEventActivityに渡す
                 Intent intent2 = new Intent(context,ShowEvent_3.class);//ShowEvent_3の追加の際にShowEvevnt_3に変更
                 intent2.putExtra(ShowEvent_3.EVENT_ID,eventId);
                 context.startActivity(intent2);//ShowEvent_3の起動
-                /*ここまで*/
+                //ここまで
                 break;
             case 3:
-                /*ShowEventActivityを開く->IDを取得してShowEventActivityに渡す*/
+                //ShowEventActivityを開く->IDを取得してShowEventActivityに渡す
                 Intent intent3 = new Intent(context,ShowEvent_4.class);//ShowEvent_4の追加の際にShowEvevnt_2に変更
                 intent3.putExtra(ShowEvent_4.EVENT_ID,eventId);
                 context.startActivity(intent3);//ShowEvent_4の起動
-                /*ここまで*/
+                //ここまで
                 break;
                 default:
-                    /*ShowEventActivityを開く->IDを取得してShowEventActivityに渡す*/
-                    /*Intent intent4 = new Intent(context,ShowEvent_2.class);//ShowEvent_2の追加の際にShowEvevnt_2に変更
-                    intent4.putExtra(ShowEvent_2.EVENT_ID,eventId);
-                    context.startActivity(intent4);//ShowEvent_2の起動*/
-                    /*ここまで*/
+                    //ShowEventActivityを開く->IDを取得してShowEventActivityに渡す
+                    //Intent intent4 = new Intent(context,ShowEvent_2.class);//ShowEvent_2の追加の際にShowEvevnt_2に変更
+                    //intent4.putExtra(ShowEvent_2.EVENT_ID,eventId);
+                    //context.startActivity(intent4);//ShowEvent_2の起動
+                    //ここまで
                     break;
-                }
+                }*/
 
             }
         });

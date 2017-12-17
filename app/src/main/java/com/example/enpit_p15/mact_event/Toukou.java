@@ -74,20 +74,25 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         InputEventFragment inputEventFragment =
                 InputEventFragment.newInstance(nextId);  //インスタンスを作成してフラグメントの表示処理を開始
         FragmentManager manager = getSupportFragmentManager();
-        Fragment fragment = manager.findFragmentByTag("InputEventFragment");
-        if(fragment == null) {
+       // Fragment fragment = manager.findFragmentByTag("InputEventFragment");
+        //if(fragment == null) {
             //Fragmentへ変数の受け渡し
-            Bundle args = new Bundle();
+            //Bundle args = new Bundle();
 
-            args.putInt("FormatID", formatID);
+            //args.putInt("FormatID", formatID);
 
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             //InputEventFragment fragment1 = new InputEventFragment();
-            inputEventFragment.setArguments(args);
-            transaction.replace(R.id.content, inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
-            transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
-            transaction.commit();
-        }
+            //inputEventFragment.setArguments(args);
+            //transaction.replace(R.id.content, inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
+            //transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
+            //transaction.commit();
+
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.content, inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
+        transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
+        transaction.commit();
+        //}
     }
 
     //フラグメントの断続表示を解消

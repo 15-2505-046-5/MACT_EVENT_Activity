@@ -7,9 +7,9 @@
     <application
         android:name=".EventApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ipokatsu"
+        android:icon="@drawable/ipokatsu2"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ipokatsu"
+        android:roundIcon="@drawable/ipokatsu2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity

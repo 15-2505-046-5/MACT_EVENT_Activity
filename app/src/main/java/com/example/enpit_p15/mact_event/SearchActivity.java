@@ -55,21 +55,21 @@ public class SearchActivity extends AppCompatActivity implements
     }
 
     public void onClick_Button(View view){
-        //Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
+        Spinner spinner = (Spinner)findViewById(R.id.cateSpinner);
         //EditText txt =(EditText)findViewById(R.id.SearchText);
-        TextView txt = (TextView)findViewById(R.id.DateText);
-        textViewC = (TextView)findViewById(R.id.result);
-        //String str = spinner.getSelectedItem().toString();
-        String str = txt.toString();
+        //TextView txt = (TextView)findViewById(R.id.DateText);
+        //textViewC = (TextView)findViewById(R.id.result);
+        String str = spinner.getSelectedItem().toString();
+       // String str = txt.toString();
         textViewC.setText(str);
         Spinner spinner2 = (Spinner)findViewById(R.id.prefSpinner);//スピナーの処理を反映させるための処理
         //textViewP = (TextView)findViewById(R.id.result2);
-        //String str2 = spinner2.getSelectedItem().toString();
-        //textViewP.setText(str2);
-        //Spinner spinner3 = (Spinner)findViewById(spinner);
+        String str2 = spinner2.getSelectedItem().toString();
+        textViewP.setText(str2);
+        Spinner spinner3 = (Spinner)findViewById(R.id.spinner);
         //textViewM = (TextView)findViewById(R.id.result3);
-        //String str3 = spinner3.getSelectedItem().toString();
-        //textViewM.setText(str3);
+        String str3 = spinner3.getSelectedItem().toString();
+        textViewM.setText(str3);
 
     }
 

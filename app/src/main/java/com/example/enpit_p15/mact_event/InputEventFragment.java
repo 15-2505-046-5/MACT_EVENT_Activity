@@ -44,10 +44,8 @@ public class InputEventFragment extends Fragment{
     private Realm mRealm;
     private EditText mTitleEdit;
     private EditText mBodyEdit;
-    private EditText mDate;
     private ImageView mEventImage;
     private String str_ymd;
-    private  String year;
 
     public static InputEventFragment newInstance(long eventId) {  //フラグメントのインスタンスを作成する
         /*引数として受け取った日記のIDをフラグメントに保存する*/
@@ -93,9 +91,9 @@ public class InputEventFragment extends Fragment{
         String[] month_s = getResources().getStringArray(R.array.month_list);//スピナーのリスト（月）
         String[] day_s = getResources().getStringArray(R.array.day_list);//スピナーのリスト(日)
 
-        final Spinner spinner_c = (Spinner) v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
-        final Spinner spinner_p = (Spinner)v.findViewById(R.id.PrefectureSpinner);//(都道府県)
-        final Spinner spinner_ct = (Spinner)v.findViewById(R.id.costSpinner);//(予算)
+        final Spinner spinner_c = v.findViewById(R.id.genreSpinner);//投稿用スピナー（ジャンル）
+        final Spinner spinner_p = v.findViewById(R.id.PrefectureSpinner);//(都道府県)
+        final Spinner spinner_ct = v.findViewById(R.id.costSpinner);//(予算)
         final Spinner spinner_y = v.findViewById(R.id.yearSpinner);//投稿用スピナー（年）
         final Spinner spinner_m = v.findViewById(R.id.monthSpinner);//(月)
         final Spinner spinner_d = v.findViewById(R.id.daySpinner);//(日)

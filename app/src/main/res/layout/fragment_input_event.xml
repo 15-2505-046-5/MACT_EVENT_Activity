@@ -149,7 +149,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="イベント名" />
+            android:hint="イベント名、14文字まで" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.CardView

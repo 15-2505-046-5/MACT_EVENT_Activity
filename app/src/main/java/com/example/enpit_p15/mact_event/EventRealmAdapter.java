@@ -31,6 +31,9 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
         protected TextView bodyText;
         protected TextView date;
         protected ImageView photo;
+        protected TextView category;
+        protected TextView prefecture;
+        protected TextView cost;
         protected TextView eventId; //ID表示用　試験段階
 
         public EventViewHolder(View itemView){

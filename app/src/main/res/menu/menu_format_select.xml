@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/menu_item_search_formatselected"
-        android:icon="@drawable/ic_search_black_24dp"
+        android:icon="@android:drawable/ic_menu_search"
         android:title="検索"
         app:showAsAction="always" />
     <item

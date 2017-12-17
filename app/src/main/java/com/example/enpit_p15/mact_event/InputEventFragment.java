@@ -159,9 +159,9 @@ public class InputEventFragment extends Fragment{
 
                             str_ymd = selected_y +"/" +selected_m+"/" + selected_d;
                             event.date = str_ymd.toString();  //年月日の中身をデータベースに格納
-                            event.category_R = selected_c;
-                            event.prefecture_R = selected_p;
-                            event.cost_R = selected_ct;
+                            //event.category_R = selected_c;
+                            //event.prefecture_R = selected_p;
+                            //event.cost_R = selected_ct;
                         }
                 });
             }

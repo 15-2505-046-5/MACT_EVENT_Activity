@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ShowEventActivity"
             android:label="@string/title_activity_show_event"
@@ -36,7 +35,11 @@
         <activity android:name=".Toukou_past" />
         <activity android:name="com.example.yu_enpit.mydiary.SearchActivity" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".RadioButtons"></activity>
+        <activity android:name=".RadioButtons" />
+        <activity
+            android:name=".ShowEvent_2"
+            android:label="@string/title_activity_show_event_2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

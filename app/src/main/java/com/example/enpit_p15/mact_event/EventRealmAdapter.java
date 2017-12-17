@@ -43,7 +43,8 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
             date = (TextView)itemView.findViewById(R.id.date);
             photo = (ImageView)itemView.findViewById(R.id.format_photo);
             eventId = (TextView)itemView.findViewById(R.id.EventId);//ID表示用　試験段階
-        }
+
+            }
     }
 /*ここまで*/
 

@@ -133,7 +133,7 @@ public class InputEventFragment extends Fragment{
                             event.category = selected_c;
                             event.prefecture = selected_p;
                             event.cost = selected_ct;
-                            event.formatID = formatID;
+                            //event.formatID = formatID;
 
                             if(str_ymd==null||str_ymd.length()==0 /*.equals(str_ymd_first)*/){
                                 event.flag_spinner_ymad = true;

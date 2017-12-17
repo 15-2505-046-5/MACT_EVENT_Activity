@@ -150,7 +150,7 @@ public class InputEventFragment extends Fragment{
                         public void execute(Realm realm) {
                             Schedule event = realm.where(Schedule.class).equalTo("id", mEventId).findFirst();
 
-                            String selected_c = spinner_c.getSelectedItem().toString();
+                            String selected_c = spinner_c.getSelectedItem().toString();//spinnerの値取得
                             String selected_p = spinner_p.getSelectedItem().toString();
                             String selected_ct = spinner_ct.getSelectedItem().toString();
                             String selected_y = spinner_y.getSelectedItem().toString();

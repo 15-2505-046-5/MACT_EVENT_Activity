@@ -34,7 +34,7 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
         protected TextView category;
         protected TextView prefecture;
         protected TextView cost;
-        protected TextView eventId; //ID表示用　試験段階
+        //protected TextView eventId; //ID表示用　試験段階
         protected int formatId;
 
         public EventViewHolder(View itemView){
@@ -46,7 +46,7 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
             category = (TextView)itemView.findViewById(R.id.category);
             prefecture = (TextView)itemView.findViewById(R.id.prefecture);
             cost = (TextView)itemView.findViewById(R.id.cost);
-            eventId = (TextView)itemView.findViewById(R.id.EventId);//ID表示用　試験段階
+            //eventId = (TextView)itemView.findViewById(R.id.EventId);//ID表示用　試験段階
 
             }
     }
@@ -124,7 +124,7 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
         holder.category.setText(event.category);
         holder.prefecture.setText(event.prefecture);
         holder.cost.setText(event.cost);
-        holder.eventId.setText("No."+ String.valueOf(event.id + 1));
+        //holder.eventId.setText("No."+ String.valueOf(event.id + 1));
         /*画像のやつ*/
         if (event.image != null && event.image.length != 0){
             Bitmap bmp = MyUtils.getImageFromByte(event.image);

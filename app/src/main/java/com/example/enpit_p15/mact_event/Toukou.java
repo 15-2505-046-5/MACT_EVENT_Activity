@@ -68,13 +68,29 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         if(maxId != null){
             nextId = maxId.longValue() + 1;
         }
+
         Schedule event = mRealm.createObject(Schedule.class, new Long(nextId));
         event.date = new SimpleDateFormat("MMM d", Locale.US).format(new Date());
         mRealm.commitTransaction();
         InputEventFragment inputEventFragment =
                 InputEventFragment.newInstance(nextId);  //インスタンスを作成してフラグメントの表示処理を開始
+
         FragmentManager manager = getSupportFragmentManager();
-       // Fragment fragment = manager.findFragmentByTag("InputEventFragment");
+
+
+        //Bundle args = new Bundle();
+        //args.putInt("FormatID",formatID);
+        //inputEventFragment.setArguments(args);
+
+        FragmentTransaction transaction = manager.beginTransaction();
+
+
+        transaction.replace(R.id.content, inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
+        transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
+        transaction.commit();
+
+
+        // Fragment fragment = manager.findFragmentByTag("InputEventFragment");
         //if(fragment == null) {
             //Fragmentへ変数の受け渡し
             //Bundle args = new Bundle();
@@ -88,10 +104,7 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
             //transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
             //transaction.commit();
 
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.content, inputEventFragment, "InputEventFragment");  //アクティビティにフラグメントの追加
-        transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
-        transaction.commit();
+
         //}
     }
 

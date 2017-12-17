@@ -90,9 +90,19 @@ public class RadioButtons extends AppCompatActivity {
         button_formatSaved.setOnClickListener(new View.OnClickListener() {  //ボタンがクリックされた時の挙動を設定
             @Override
             public void onClick(View view) {
-                Intent intent_formatSelected = new Intent(RadioButtons.this, Toukou.class);  //RadioButtonsからToukouに移動
-                intent_formatSelected.putExtra("FormatData", formatdata);       //activity間のデータの受け渡し部分
-                startActivity(intent_formatSelected);
+                if(formatdata==1) {
+                    Intent intent_formatSelected = new Intent(RadioButtons.this, Toukou.class);  //RadioButtonsからToukou1に移動
+                    intent_formatSelected.putExtra("FormatData", formatdata);       //activity間のデータの受け渡し部分
+                    startActivity(intent_formatSelected);
+                }else if(formatdata==2){
+                    Intent intent_formatSelected = new Intent(RadioButtons.this, SearchActivity.class);  //RadioButtonsからToukou2に移動
+                    intent_formatSelected.putExtra("FormatData", formatdata);       //activity間のデータの受け渡し部分
+                    startActivity(intent_formatSelected);
+                }else if(formatdata==3){
+                    Intent intent_formatSelected = new Intent(RadioButtons.this, MainActivity.class);  //RadioButtonsからToukou3に移動
+                    intent_formatSelected.putExtra("FormatData", formatdata);       //activity間のデータの受け渡し部分
+                    startActivity(intent_formatSelected);
+                }
             }
         });
 

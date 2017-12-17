@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity
         implements EventListFragment.OnFragmentInteractionListener {
 
     private Realm mRealm;
+    private String DateTxt;
     private String CostTxt;
     private String CateTxt;
     private String PrefTxt;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
         //CateTxt = intent.getStringExtra("CATE");
         //PrefTxt = intent.getStringExtra("PREF");
         KeyTxt = intent.getStringExtra("KEY");
+        DateTxt = intent.getStringExtra("DATE");
 
         //createTestDate();
         showEventList();  //EventListFragmentを表示する処理
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity
             //args.putString("PREF",PrefTxt);
             //args.putString("COST",CostTxt);
             args.putString("KEY",KeyTxt);
+            args.putString("DATE",DateTxt);
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             EventListFragment fragment1 = new EventListFragment();

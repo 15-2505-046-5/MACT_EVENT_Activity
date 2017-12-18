@@ -19,6 +19,7 @@ public class ShowEvent_4 extends AppCompatActivity {
     private String mBodyText;
     private String mTitleText;
     private String mDateText;
+    private String mCategory;
     private Realm mRealm;
     private Bitmap mBitmap;
 
@@ -47,6 +48,10 @@ public class ShowEvent_4 extends AppCompatActivity {
         TextView date_s = (TextView)findViewById(R.id.date_show4);
         mDateText = event.date;  //変数に取得した本文を格納
         date_s.setText(event.date);  //本文を表示
+
+        TextView category_s = (TextView)findViewById(R.id.category_show4);
+        mCategory = event.category;  //変数に取得した本文を格納
+        category_s.setText(event.category);  //本文を表示
     }
 
     @Override

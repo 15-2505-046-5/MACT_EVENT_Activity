@@ -32,6 +32,8 @@
                 android:value="com.example.enpit_p15.mact_event.MainActivity" />
         </activity>
         <activity android:name=".Toukou" />
+        <activity android:name=".Toukou2" />
+        <activity android:name=".Toukou3" />
         <activity android:name=".Toukou_past" />
         <activity android:name="com.example.yu_enpit.mydiary.SearchActivity" />
         <activity android:name=".SearchActivity" />
@@ -52,6 +54,7 @@
             android:name=".ShowEvent_4"
             android:label="@string/title_activity_show_event_4"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Toukou3"></activity>
     </application>
 
 </manifest>

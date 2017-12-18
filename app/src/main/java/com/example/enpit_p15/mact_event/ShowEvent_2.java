@@ -44,6 +44,7 @@ public class ShowEvent_2 extends AppCompatActivity {
         TextView title_s = (TextView)findViewById(R.id.title_show);
         mTitleText = event.title;  //変数に取得した本文を格納
         title_s.setText(event.title);  //本文を表示
+        setTitle(event.title);
 
         TextView date_s = (TextView)findViewById(R.id.date_show);
         mDateText = event.date;  //変数に取得した本文を格納

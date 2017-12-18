@@ -100,8 +100,8 @@ public class EventRealmAdapter extends RealmRecyclerViewAdapter<Schedule,EventRe
                 break;
             default:
                     //ShowEventActivityを開く->IDを取得してShowEventActivityに渡す
-                    Intent intent4 = new Intent(context,SearchActivity.class);//ShowEvent_2の追加の際にShowEvevnt_2に変更
-                    //intent4.putExtra(ShowEvent_2.EVENT_ID,eventId);
+                    Intent intent4 = new Intent(context,ShowEvent_4.class);//ShowEvent_2の追加の際にShowEvevnt_2に変更
+                    intent4.putExtra(ShowEvent_2.EVENT_ID,eventId);
                     context.startActivity(intent4);//ShowEvent_2の起動
                     //ここまで
                     break;

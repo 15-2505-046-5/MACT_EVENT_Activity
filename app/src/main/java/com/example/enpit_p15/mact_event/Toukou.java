@@ -78,8 +78,6 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
         FragmentManager manager = getSupportFragmentManager();
 
 
-        Bundle args = new Bundle();
-        args.putInt("FormatID",form);
         //inputEventFragment.setArguments(args);
 
         FragmentTransaction transaction = manager.beginTransaction();
@@ -192,6 +190,9 @@ public class Toukou extends AppCompatActivity implements EventListFragment.OnFra
 
         InputEventFragment inputEventFragment =
                 InputEventFragment.newInstance(nextId);
+        Bundle args = new Bundle();
+        args.putInt("FormatID",form);
+
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.content, inputEventFragment,

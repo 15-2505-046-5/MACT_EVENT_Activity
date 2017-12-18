@@ -90,7 +90,7 @@
 
             <TextView
                 android:id="@+id/date_show3"
-                android:layout_width="300dp"
+                android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="16dp"
@@ -113,6 +113,36 @@
                 android:textSize="25sp"
                 app:layout_constraintLeft_toRightOf="@+id/textView3"
                 app:layout_constraintTop_toBottomOf="@+id/date_show3" />
+
+            <TextView
+                android:id="@+id/textView_category"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="32dp"
+                android:text="ジャンル："
+                android:textAlignment="textStart"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/body_show3"
+                app:layout_constraintLeft_toRightOf="@+id/date_show3"
+                app:layout_constraintTop_toBottomOf="@+id/title_show3" />
+
+            <TextView
+                android:id="@+id/category_show3"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="32dp"
+                android:text="TextView"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/body_show3"
+                app:layout_constraintLeft_toRightOf="@+id/textView_category"
+                app:layout_constraintTop_toBottomOf="@+id/title_show3" />
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>

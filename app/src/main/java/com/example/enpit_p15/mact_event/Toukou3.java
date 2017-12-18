@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +22,7 @@ import io.realm.Realm;
  * Created by enPiT-P16 on 2017/12/18.
  */
 
-public class Toukou2  extends AppCompatActivity implements EventListFragment.OnFragmentInteractionListener {
+public class Toukou3  extends AppCompatActivity implements EventListFragment.OnFragmentInteractionListener {
 
     private EventListFragment.OnFragmentInteractionListener mListener;
     private Realm mRealm;
@@ -31,24 +32,24 @@ public class Toukou2  extends AppCompatActivity implements EventListFragment.OnF
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRealm = Realm.getDefaultInstance();
-        setContentView(R.layout.activity_toukou2);  //activity_toukouを呼び出す
+        setContentView(R.layout.activity_toukou3);  //activity_toukouを呼び出す
         setTitle("詳細入力");
 
         //activity間のデータの受け取り部分、テスト用
         Intent intent = getIntent();
         form = intent.getIntExtra("FormatData", 0);
-        //Toast.makeText(Toukou2.this,String.valueOf(form), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Toukou3.this,String.valueOf(form), Toast.LENGTH_SHORT).show();
 
 
-        Button save_button2 = (Button) findViewById(R.id.save_button2);
-        save_button2.setOnClickListener(new View.OnClickListener() {
+        Button save_button3 = (Button) findViewById(R.id.save_button3);
+        save_button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                //Toast.makeText(Toukou2.this,  getResources().getString(R.string.save_fragment), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Toukou3.this,  getResources().getString(R.string.save_fragment), Toast.LENGTH_SHORT).show();
 
-                Intent intent_MainActivity2 = new Intent(Toukou2.this, MainActivity.class);  //ToukouからMainActivityに移動
+                Intent intent_MainActivity2 = new Intent(Toukou3.this, MainActivity.class);  //ToukouからMainActivityに移動
                 startActivity(intent_MainActivity2);
             }
         });
@@ -72,7 +73,7 @@ public class Toukou2  extends AppCompatActivity implements EventListFragment.OnF
         Schedule event = mRealm.createObject(Schedule.class, new Long(nextId));
         event.date = new SimpleDateFormat("MMM d", Locale.US).format(new Date());
         mRealm.commitTransaction();
-        InputEventFragment inputEventFragment2 =
+        InputEventFragment inputEventFragment3 =
                 InputEventFragment.newInstance(nextId);  //インスタンスを作成してフラグメントの表示処理を開始
 
         FragmentManager manager = getSupportFragmentManager();
@@ -85,7 +86,7 @@ public class Toukou2  extends AppCompatActivity implements EventListFragment.OnF
         FragmentTransaction transaction = manager.beginTransaction();
 
         //change replace to add
-        transaction.replace(R.id.content, inputEventFragment2, "InputEventFragment");  //アクティビティにフラグメントの追加
+        transaction.replace(R.id.content, inputEventFragment3, "InputEventFragment");  //アクティビティにフラグメントの追加
         transaction.addToBackStack(null);  //戻るボタンを押した時に戻る機能の実装？　p322
         transaction.commit();
 
@@ -130,7 +131,7 @@ public class Toukou2  extends AppCompatActivity implements EventListFragment.OnF
                 new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        Intent intent_SearchActivity = new Intent(Toukou2.this, SearchActivity.class);  //ToukouからSearchActivityに移動
+                        Intent intent_SearchActivity = new Intent(Toukou3.this, SearchActivity.class);  //ToukouからSearchActivityに移動
                         startActivity(intent_SearchActivity);
                         return true;
                     }

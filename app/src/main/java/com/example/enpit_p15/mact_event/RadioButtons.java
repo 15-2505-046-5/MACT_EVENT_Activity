@@ -99,7 +99,7 @@ public class RadioButtons extends AppCompatActivity {
                     intent_formatSelected.putExtra("FormatData", formatdata);       //activity間のデータの受け渡し部分
                     startActivity(intent_formatSelected);
                 }else if(formatdata==3){
-                    Intent intent_formatSelected = new Intent(RadioButtons.this, MainActivity.class);  //RadioButtonsからToukou3に移動
+                    Intent intent_formatSelected = new Intent(RadioButtons.this, Toukou3.class);  //RadioButtonsからToukou3に移動
                     intent_formatSelected.putExtra("FormatData", formatdata);       //activity間のデータの受け渡し部分
                     startActivity(intent_formatSelected);
                 }
